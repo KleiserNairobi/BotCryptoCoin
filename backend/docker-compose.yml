@@ -1,0 +1,16 @@
+version: '3.9'
+
+services:
+  db-endereco:
+    image: postgres:16.2
+    restart: always
+    container_name: db-bot-crypto-coin
+    environment:
+      POSTGRES_DB: bot-crypto-coin
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      PGDATA: /data/postgres
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./data/pg:/data/postgres
