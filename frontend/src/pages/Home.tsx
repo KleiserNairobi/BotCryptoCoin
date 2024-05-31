@@ -1,10 +1,14 @@
 import { HStack, Flex, Text } from "@chakra-ui/react";
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import { Sidebar } from "../components/Sidebar";
 import { useTokens } from "../styles/tokens";
 import { Header } from "../components/Header";
 
-export default function Home() {
+type HomeProps = {
+  children: ReactNode;
+};
+
+export default function Home({ children }: HomeProps) {
   const tokens = useTokens();
   const [collapse, setCollapse] = useState(true);
 
@@ -37,10 +41,12 @@ export default function Home() {
         //justifyContent="center"
         borderRadius={"3xl"}
       >
-        <Header />
-        <Text fontSize={100} color="gray.300">
-          Main
-        </Text>
+        <Header
+          collapse={collapse}
+          setCollapse={setCollapse}
+          titulo="Dashboard"
+        />
+        {children}
       </Flex>
     </HStack>
   );

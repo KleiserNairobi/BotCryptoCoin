@@ -8,11 +8,14 @@ type LogoProps = {
 export function Logo({ collapse }: LogoProps) {
   return (
     <Flex
+      pb={collapse ? 4 : 6}
       w={"full"}
       mt={collapse ? 0 : 2}
       alignItems={"center"}
       justifyContent={"space-between"}
       flexDir={collapse ? "row" : "column"}
+      borderColor="gray.600"
+      borderBottomWidth={1}
     >
       <Box display={"flex"} alignItems={"center"} gap={2}>
         <Icon as={SiBitcoinsv} fontSize={30} />
