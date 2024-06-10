@@ -2,7 +2,7 @@ import { Flex, IconButton, useColorMode, Heading } from "@chakra-ui/react";
 import { MdMenu, MdBrightness2, MdOutlineWbSunny } from "react-icons/md";
 
 type HeaderProps = {
-  titulo: string;
+  titulo?: string;
   collapse: boolean;
   setCollapse: (collapse: boolean) => void;
 };

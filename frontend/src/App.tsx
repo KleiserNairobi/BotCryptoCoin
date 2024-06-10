@@ -1,8 +1,7 @@
-//import Login from "./Login";
-//import Dashboard from "./Dashboard";
-
-import Home from "./pages/Home";
+import { Router } from "./Router";
+//import Login from "./pages/Login";
 
 export default function App() {
-  return <Home />;
+  return <Router />;
+  //return <Login />;
 }

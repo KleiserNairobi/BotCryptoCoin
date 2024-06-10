@@ -21,31 +21,31 @@ const items = [
     type: "link",
     label: "Dashboard",
     icon: AiOutlineDashboard,
-    path: "/",
+    path: "/dashboard",
   },
   {
     type: "link",
     label: "Automações",
     icon: MdAlarmOn,
-    path: "/",
+    path: "/automacoes",
   },
   {
     type: "link",
     label: "Ordens",
     icon: MdOutlineDiscount,
-    path: "/",
+    path: "/ordens",
   },
   {
     type: "link",
     label: "Configurações",
     icon: MdOutlineSettingsSuggest,
-    path: "/",
+    path: "/symbols",
   },
   {
     type: "link",
     label: "Sair",
     icon: MdOutlineExitToApp,
-    path: "/",
+    path: "/sair",
   },
 ];
 

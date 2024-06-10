@@ -2,7 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="./src/assets/images/bitcoin.svg"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -12,6 +16,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kleiser Nairobi</title>
   </head>
+
+  <script>
+    (function () {
+      function getInitialColorMode() {
+        const persistedColorPreference = window.localStorage.getItem(
+          "chakra-ui-color-mode"
+        );
+        const hasPersistedPreference =
+          typeof persistedColorPreference === "string";
+
+        if (hasPersistedPreference) {
+          return persistedColorPreference;
+        }
+        const mql = window.matchMedia("(prefers-color-scheme: dark)");
+        const hasMediaQueryPreference = typeof mql.matches === "boolean";
+        if (hasMediaQueryPreference) {
+          return mql.matches ? "dark" : "light";
+        }
+        return "light";
+      }
+      const colorMode = getInitialColorMode();
+      document.documentElement.classList.add("chakra-ui-" + colorMode);
+    })();
+  </script>
+
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>

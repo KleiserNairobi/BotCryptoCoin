@@ -1,5 +1,12 @@
-import { Box, Heading, Link, ListIcon, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Heading,
+  Link as ChakraLink,
+  ListIcon,
+  Text,
+} from "@chakra-ui/react";
 import { IconType } from "react-icons";
+import { Link as RouterLink } from "react-router-dom";
 
 type ItemProps = {
   type: string;
@@ -15,7 +22,7 @@ type NavItemProps = {
 };
 
 export function NavItem({ item, collapse, isActive }: NavItemProps) {
-  const { label, icon } = item;
+  const { label, icon, path } = item;
 
   if (item.type === "link") {
     return (
@@ -25,9 +32,9 @@ export function NavItem({ item, collapse, isActive }: NavItemProps) {
         alignItems={"center"}
         justifyContent={"center"}
       >
-        <Link
-          href=""
-          as={Link}
+        <ChakraLink
+          as={RouterLink}
+          to={path ? path : ""}
           gap={1}
           w="full"
           p={"10px"}
@@ -46,7 +53,7 @@ export function NavItem({ item, collapse, isActive }: NavItemProps) {
         >
           <ListIcon as={icon} fontSize={22} m={0} />
           {collapse && <Text>{label}</Text>}
-        </Link>
+        </ChakraLink>
       </Box>
     );
   }
