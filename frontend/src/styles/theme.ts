@@ -14,38 +14,101 @@ export const theme = extendTheme({
   },
   colors: {
     gray: {
-      "900": "#171923",
-      "800": "#1A202C",
-      "700": "#2D3748",
-      "600": "#4A5568",
-      "500": "#718096",
-      "400": "#A0AEC0",
-      "300": "#CBD5E0",
-      "200": "#E2E8F0",
-      "100": "#EDF2F7",
-      "50": "#F7FAFC",
+      "50": "#D7D8DC",
+      "100": "#AEB1B8",
+      "200": "#838A93",
+      "300": "#5B6370",
+      "400": "#49515F",
+      "500": "#37404E",
+      "600": "#313C4B",
+      "700": "#2B3643",
+      "800": "#25303C",
+      "900": "#1F2A35",
     },
     yellow: {
-      "900": "#5F370E",
-      "800": "#744210",
-      "700": "#975A16",
-      "600": "#B7791F",
-      "500": "#D69E2E",
-      "400": "#ECC94B",
-      "300": "#F6E05E",
-      "200": "#FAF089",
-      "100": "#FEFCBF",
-      "50": "#FFFFF0",
+      "50": "#FFF7E4",
+      "100": "#FFEEC8",
+      "200": "#FFE5AA",
+      "300": "#FEDD8E",
+      "400": "#FFD472",
+      "500": "#FFC856",
+      "600": "#FFBD3A",
+      "700": "#FFB11E",
+      "800": "#FFA502",
+      "900": "#FF9900",
     },
+    fundo: {
+      light: "#F3F0E9",
+      dark: "#0C0F16",
+    },
+    menu: {
+      light: "#FFFFFF",
+      dark: "#37404E",
+    },
+    bgMenu: {
+      light: "#FEF6DF",
+      dark: "#37404E",
+    },
+    menuTitle: {
+      light: "#A1B3CB",
+      dark: "#37404E",
+    },
+    menuTitleBold: {
+      light: "#323D48",
+      dark: "#37404E",
+    },
+    menuLabel: {
+      light: "#9C9C9C",
+      dark: "#37404E",
+    },
+    main: {
+      light: "#F8F8F6",
+      dark: "#2B3643",
+    },
+    title: {
+      light: "#323B4A",
+      dark: "#F7FAFC",
+    },
+    subtitle: {
+      light: "#2F3B49",
+      dark: "#EDF2F7",
+    },
+    titleYellow: {
+      light: "#FDCE3B",
+      dark: "#F7FAFC",
+    },
+    icon: {
+      light: "#2F3B49",
+      dark: "#EDF2F7",
+    },
+    bgIcon: {
+      light: "#FFF3D9",
+      dark: "#EDF2F7",
+    },
+    line: {
+      light: "#8A9EB7",
+      dark: "#EDF2F7",
+    },
+
+    // #F7F7F7 // fundo 2
+
+    // #A1B3CB // cor menu normal
+
+    // #323D48 // cor menu hover
+
+    // #FEF6DF // cor fundo menu hover
+
+    // #9C9C9C // cor subtítulo disable
+
+    // #FFD166 // cor button primario
+
+    // #FAD680 // cor button secundário
   },
-  fundo: {
-    light: "gray.50",
-    dark: "yellow.900",
-  },
+
   styles: {
     global: (props: GlobalStyleProps) => ({
       body: {
-        bg: mode("gray.100", "gray.700")(props),
+        bg: mode("fundo.light", "fundo.dark")(props),
         color: mode("gray.600", "white")(props),
       },
     }),

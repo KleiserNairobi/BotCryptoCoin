@@ -1,7 +1,6 @@
 import {
   Box,
   Button,
-  Text,
   Flex,
   Heading,
   Select,
@@ -20,10 +19,15 @@ import {
   ModalBody,
   useDisclosure,
   HStack,
+  IconButton,
+  Stack,
 } from "@chakra-ui/react";
 import { useState } from "react";
+import { Input } from "../components/form/Input";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
-import { MdFirstPage, MdLastPage } from "react-icons/md";
+import { MdFirstPage, MdLastPage, MdMailOutline } from "react-icons/md";
+import { TbUser } from "react-icons/tb";
+import { useTokens } from "../styles/tokens";
 
 interface User {
   id: number;
@@ -41,6 +45,7 @@ const allUsers: User[] = Array.from({ length: 100 }, (_, index) => ({
 }));
 
 export default function Symbols() {
+  const tokens = useTokens();
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [itemsPerPage, setItemsPerPage] = useState<number>(10);
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -67,16 +72,18 @@ export default function Symbols() {
 
   return (
     <>
-      <Flex w={"full"} h={"full"} flexDir={"column"}>
-        <HStack>
-          <Heading mt={6} mb={6}>
+      <Flex w={"full"} h={"full"} flexDir={"column"} p={4} borderRadius={"3xl"}>
+        <HStack justify={"space-between"}>
+          <Heading mt={6} mb={6} color={tokens.title}>
             Usuários
           </Heading>
-          <Button onClick={onOpen}>Open Modal</Button>
+          <Button onClick={onOpen} colorScheme="yellow">
+            Cadastrar
+          </Button>
         </HStack>
         <Box overflowX="auto">
           <Table>
-            <Thead>
+            <Thead bg={"gray.100"}>
               <Tr>
                 <Th>ID</Th>
                 <Th>Name</Th>
@@ -97,7 +104,7 @@ export default function Symbols() {
           </Table>
         </Box>
 
-        <Flex mt={10} justifyContent="space-between" alignItems="center">
+        <Flex mt={6} p={4} justifyContent="space-between" alignItems="center">
           <Select
             width="auto"
             value={itemsPerPage}
@@ -109,50 +116,74 @@ export default function Symbols() {
           </Select>
 
           <Flex>
-            <Button
+            <IconButton
+              mr={1}
+              variant={"solid"}
+              fontSize={"20px"}
+              icon={<MdFirstPage />}
+              aria-label="Primeiro"
               onClick={() => handlePageChange(1)}
               isDisabled={currentPage === 1}
-              mr={2}
-            >
-              <MdFirstPage />
-            </Button>
-            <Button
+            />
+            <IconButton
+              mr={1}
+              variant={"solid"}
+              fontSize={"20px"}
+              icon={<GrFormPrevious />}
+              aria-label="Anterior"
               onClick={() => handlePageChange(currentPage - 1)}
               isDisabled={currentPage === 1}
-              mr={2}
-            >
-              <GrFormPrevious />
-            </Button>
-            <Button
+            />
+            <IconButton
+              mr={1}
+              variant={"solid"}
+              fontSize={"20px"}
+              icon={<GrFormNext />}
+              aria-label="Próximo"
               onClick={() => handlePageChange(currentPage + 1)}
               isDisabled={currentPage === totalPages}
-              mr={2}
-            >
-              <GrFormNext />
-            </Button>
-            <Button
+            />
+            <IconButton
+              mr={1}
+              variant={"solid"}
+              fontSize={"20px"}
+              icon={<MdLastPage />}
+              aria-label="Último"
               onClick={() => handlePageChange(totalPages)}
               isDisabled={currentPage === totalPages}
-            >
-              <MdLastPage />
-            </Button>
+            />
           </Flex>
         </Flex>
       </Flex>
       <Modal isOpen={isOpen} onClose={onClose} isCentered>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
+          <ModalHeader>Edição de usuário</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Text>Corpo da modal...</Text>
+            <Stack spacing={4}>
+              <Input
+                name="cadUsername"
+                type="text"
+                label="Nome *"
+                icon={TbUser}
+              />
+              <Input
+                name="cadEmail"
+                type="email"
+                label="E-Mail *"
+                icon={MdMailOutline}
+              />
+            </Stack>
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
-              Close
+            <Button colorScheme="yellow" mr={3}>
+              Confirmar
             </Button>
-            <Button variant="ghost">Secondary Action</Button>
+            <Button variant="outline" onClick={onClose}>
+              Cancelar
+            </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

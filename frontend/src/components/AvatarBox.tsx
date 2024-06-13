@@ -1,10 +1,12 @@
 import { Avatar, Flex, Text } from "@chakra-ui/react";
+import { useTokens } from "../styles/tokens";
 
 type AvatarBoxProps = {
   collapse: boolean;
 };
 
 export function AvatarBox({ collapse }: AvatarBoxProps) {
+  const tokens = useTokens();
   return (
     <Flex
       p={2}
@@ -17,7 +19,7 @@ export function AvatarBox({ collapse }: AvatarBoxProps) {
       borderColor="gray.600"
       borderWidth={collapse ? 1 : 0}
     >
-      <Avatar name="Kleiser Nairobi" bg={"pink.500"} />
+      <Avatar name="Kleiser Nairobi" bg={tokens.titleYellow} />
       {collapse && (
         <Flex
           w={"full"}

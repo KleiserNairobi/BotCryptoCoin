@@ -7,6 +7,7 @@ import {
 } from "react-icons/md";
 import { AiOutlineDashboard } from "react-icons/ai";
 import { NavItem } from "./NavItem";
+import { useState } from "react";
 
 type NavigationProps = {
   collapse: boolean;
@@ -50,11 +51,21 @@ const items = [
 ];
 
 export function Navigation({ collapse }: NavigationProps) {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const handleItemClick = (index: number) => {
+    setActiveIndex(index);
+  };
   return (
     <List w={"full"} mt={8}>
       {items.map((item, index) => (
         <ListItem key={index}>
-          <NavItem item={item} isActive={index === 0} collapse={collapse} />
+          <NavItem
+            item={item}
+            isActive={index === activeIndex}
+            collapse={collapse}
+            onClick={() => handleItemClick(index)}
+          />
         </ListItem>
       ))}
     </List>

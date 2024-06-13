@@ -1,11 +1,13 @@
 import { Box, Flex, Icon, Text } from "@chakra-ui/react";
 import { SiBitcoinsv } from "react-icons/si";
+import { useTokens } from "../styles/tokens";
 
 type LogoProps = {
   collapse: boolean;
 };
 
 export function Logo({ collapse }: LogoProps) {
+  const tokens = useTokens();
   return (
     <Flex
       pb={collapse ? 4 : 6}
@@ -14,7 +16,7 @@ export function Logo({ collapse }: LogoProps) {
       alignItems={"center"}
       justifyContent={"space-between"}
       flexDir={collapse ? "row" : "column"}
-      borderColor="gray.600"
+      borderColor={tokens.line}
       borderBottomWidth={1}
     >
       <Box display={"flex"} alignItems={"center"} gap={2}>
@@ -26,12 +28,18 @@ export function Logo({ collapse }: LogoProps) {
               fontWeight={"bold"}
               letterSpacing={"tight"}
               w={64}
+              color={tokens.title}
             >
               Nairobi
-              <Text as={"span"} ml={1} color={"pink.500"}>
+              <Text as={"span"} ml={1} color={tokens.titleYellow}>
                 .
               </Text>
-              <Text as={"span"} fontSize={"md"} ml={1} color={"pink.500"}>
+              <Text
+                as={"span"}
+                fontSize={"md"}
+                ml={1}
+                color={tokens.titleYellow}
+              >
                 Bot Crypto Coin
               </Text>
             </Text>

@@ -7,6 +7,7 @@ import {
 } from "@chakra-ui/react";
 import { IconType } from "react-icons";
 import { Link as RouterLink } from "react-router-dom";
+import { useTokens } from "../../styles/tokens";
 
 type ItemProps = {
   type: string;
@@ -19,9 +20,11 @@ type NavItemProps = {
   item: ItemProps;
   collapse: boolean;
   isActive: boolean;
+  onClick: () => void;
 };
 
-export function NavItem({ item, collapse, isActive }: NavItemProps) {
+export function NavItem({ item, collapse, isActive, onClick }: NavItemProps) {
+  const tokens = useTokens();
   const { label, icon, path } = item;
 
   if (item.type === "link") {
@@ -42,14 +45,16 @@ export function NavItem({ item, collapse, isActive }: NavItemProps) {
           alignItems="center"
           justifyContent={!collapse ? "center" : ""}
           fontWeight="medium"
-          color={isActive ? "pink.400" : "gray.300"}
+          color={isActive ? tokens.menuTitleBold : tokens.menuTitle}
+          bgColor={isActive ? tokens.bgMenuFocus : "transparent"}
           _hover={{
             padding: "10px",
             textDecoration: "none",
-            color: "pink.400",
-            bgColor: "gray.700",
+            color: tokens.menuTitleBold,
+            bgColor: tokens.bgMenuFocus,
             borderRadius: "md",
           }}
+          onClick={onClick}
         >
           <ListIcon as={icon} fontSize={22} m={0} />
           {collapse && <Text>{label}</Text>}
@@ -60,11 +65,11 @@ export function NavItem({ item, collapse, isActive }: NavItemProps) {
 
   return (
     <Heading
-      color="gray.500"
+      color={tokens.menuLabel}
       fontWeight="medium"
       textTransform="uppercase"
       fontSize="sm"
-      borderColor="gray.500"
+      //borderColor="gray.900"
       pt={collapse ? 0 : 0}
       my={0}
     >

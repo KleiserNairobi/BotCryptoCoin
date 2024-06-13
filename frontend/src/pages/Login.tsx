@@ -18,6 +18,7 @@ import {
 } from "react-icons/md";
 import { Input } from "../components/form/Input";
 import { useTokens } from "../styles/tokens";
+import { TbUser } from "react-icons/tb";
 
 export default function Login() {
   const tokens = useTokens();
@@ -25,9 +26,9 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const { toggleColorMode, colorMode } = useColorMode();
 
-  function toggleLogin() {
-    setLogin(!login);
-  }
+  // function toggleLogin() {
+  //   setLogin(!login);
+  // }
 
   return (
     <Flex
@@ -161,7 +162,7 @@ export default function Login() {
                 name="cadUsername"
                 type="text"
                 label="Nome *"
-                icon={MdMailOutline}
+                icon={TbUser}
               />
               <Input
                 name="cadEmail"

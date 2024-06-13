@@ -17,7 +17,7 @@ export default function Home() {
         h={"full"}
         p={6}
         maxW={collapse ? 300 : 100}
-        bg={tokens.corDeFundo}
+        bg={tokens.bgMenu}
         alignItems={"start"}
         flexDir={"column"}
         justifyContent={"space-between"}
@@ -31,7 +31,7 @@ export default function Home() {
         p={6}
         w={"full"}
         h={"full"}
-        bg={tokens.corDeFundo}
+        bg={tokens.bgMain}
         flexDir={"column"}
         //position={"relative"}
         //alignItems="center"
