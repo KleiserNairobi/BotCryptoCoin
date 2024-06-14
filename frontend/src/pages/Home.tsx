@@ -10,7 +10,7 @@ export default function Home() {
   const [collapse, setCollapse] = useState(true);
 
   return (
-    <HStack w={"full"} h={"100vh"} p={6} gap={0.5}>
+    <HStack w={"full"} h={"100vh"} p={2} gap={0.5}>
       <Flex
         as={"aside"}
         w={"full"}

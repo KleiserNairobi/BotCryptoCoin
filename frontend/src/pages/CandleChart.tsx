@@ -20,19 +20,24 @@ export function CandleChart({ simbolo = "BTCUSDT" }: CandleChartProps) {
       {
         "locale": "br",      
         "autosize": true,
+        "interval": "1",
         "symbol": "BINANCE:${simbolo}",
-        "timezone": "Etc/UTC",
+        "timezone": "America/Sao_Paulo",
         "theme": "light",
         "style": "1",
-        "backgroundColor": "rgba(255, 255, 255, 1)",
-        "gridColor": "rgba(242, 242, 242, 0.06)",
+        "enable_publishing": false,
+        "allow_symbol_change": false,
+        "details": true,
         "withdateranges": true,
         "range": "YTD",
-        "allow_symbol_change": true,
+        "hide_side_toolbar": false,
         "details": true,
-        "hotlist": false,
+        "hotlist": true,
         "calendar": false,
-        "hide_side_toolbar": true
+        "studies": [
+          "RSI@tv-basicstudies"
+        ],
+        "hide_volume": true,
       }`;
       container.current.appendChild(script);
     }
