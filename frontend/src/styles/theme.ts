@@ -89,6 +89,12 @@ export const theme = extendTheme({
       light: "#8A9EB7",
       dark: "#EDF2F7",
     },
+    bgHeaderCard: {
+      light: "#F2EFE8",
+      dark: "#EDF2F7",
+    },
+
+    // #F2EFE8
 
     // #F7F7F7 // fundo 2
 

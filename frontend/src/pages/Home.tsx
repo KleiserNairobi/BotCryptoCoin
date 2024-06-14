@@ -10,7 +10,7 @@ export default function Home() {
   const [collapse, setCollapse] = useState(true);
 
   return (
-    <HStack w={"full"} h={"100vh"} p={2} gap={0.5}>
+    <HStack w={"full"} h={"100vh"} gap={0.5}>
       <Flex
         as={"aside"}
         w={"full"}
@@ -22,13 +22,15 @@ export default function Home() {
         flexDir={"column"}
         justifyContent={"space-between"}
         transition={"ease-in-out .2s"}
-        borderRadius={"3xl"}
+        //borderRadius={"3xl"}
       >
         <Sidebar collapse={collapse} />
       </Flex>
       <Flex
         as={"main"}
-        p={6}
+        pl={6}
+        pt={6}
+        //pb={6}
         w={"full"}
         h={"full"}
         bg={tokens.bgMain}
@@ -36,7 +38,7 @@ export default function Home() {
         //position={"relative"}
         //alignItems="center"
         //justifyContent="center"
-        borderRadius={"3xl"}
+        //borderRadius={"3xl"}
       >
         <Header collapse={collapse} setCollapse={setCollapse} />
         <Box overflowX="auto">

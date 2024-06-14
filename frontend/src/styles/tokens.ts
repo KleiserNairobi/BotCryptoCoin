@@ -33,6 +33,10 @@ export function useTokens() {
   );
 
   const line = useColorModeValue("line.light", "line.dark");
+  const bgHeaderCard = useColorModeValue(
+    "bgHeaderCard.light",
+    "bgHeaderCard.dark"
+  );
 
   return {
     corDoTexto,
@@ -54,5 +58,6 @@ export function useTokens() {
     bgMenuFocus,
     titleYellow,
     line,
+    bgHeaderCard,
   };
 }

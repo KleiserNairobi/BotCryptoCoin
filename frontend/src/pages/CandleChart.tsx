@@ -7,8 +7,9 @@ type CandleChartProps = {
 
 export function CandleChart({ simbolo = "BTCUSDT" }: CandleChartProps) {
   const container = useRef<HTMLDivElement>(null);
-
+  //const url = process.env.REACT_APP_TRDVIEW_URL;
   useEffect(() => {
+    console.log(simbolo);
     if (container.current) {
       container.current.innerHTML = "";
       const script = document.createElement("script");
@@ -21,23 +22,22 @@ export function CandleChart({ simbolo = "BTCUSDT" }: CandleChartProps) {
         "locale": "br",      
         "autosize": true,
         "interval": "1",
+        "style": "1",
         "symbol": "BINANCE:${simbolo}",
         "timezone": "America/Sao_Paulo",
         "theme": "light",
-        "style": "1",
-        "enable_publishing": false,
         "allow_symbol_change": false,
         "details": true,
         "withdateranges": true,
         "range": "YTD",
-        "hide_side_toolbar": false,
+        "hide_side_toolbar": true,
         "details": true,
-        "hotlist": true,
-        "calendar": false,
+        "hotlist": false,
+        "hide_volume": false,
         "studies": [
-          "RSI@tv-basicstudies"
+          "MASimple@tv-basicstudies"
         ],
-        "hide_volume": true,
+        "support_host": "https://www.tradingview.com"
       }`;
       container.current.appendChild(script);
     }
@@ -45,7 +45,7 @@ export function CandleChart({ simbolo = "BTCUSDT" }: CandleChartProps) {
 
   const candleContainer = useMemo(
     () => (
-      <Flex h={"60%"} w={"100%"} borderRadius={10} p={2} bg={"White"} mt={5}>
+      <Flex w={"100%"} borderRadius={10} p={3} bg={"White"} mt={5}>
         <div
           ref={container}
           className="tradingview-widget-container"
