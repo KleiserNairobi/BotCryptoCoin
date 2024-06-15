@@ -16,7 +16,7 @@ export default function Home() {
         w={"full"}
         h={"full"}
         p={6}
-        maxW={collapse ? 300 : 100}
+        maxW={collapse ? 290 : 100}
         bg={tokens.bgMenu}
         alignItems={"start"}
         flexDir={"column"}

@@ -10,38 +10,45 @@ export function Logo({ collapse }: LogoProps) {
   const tokens = useTokens();
   return (
     <Flex
+      h={"60px"}
+      //bg={"cyan.100"}
       pb={collapse ? 4 : 6}
       w={"full"}
-      mt={collapse ? 0 : 2}
+      //mt={collapse ? 0 : 2}
       alignItems={"center"}
       justifyContent={"space-between"}
       flexDir={collapse ? "row" : "column"}
       borderColor={tokens.line}
       borderBottomWidth={1}
     >
-      <Box display={"flex"} alignItems={"center"} gap={2}>
-        <Icon as={SiBitcoinsv} fontSize={30} />
+      <Box
+        gap={2}
+        display={"flex"}
+        alignItems={"center"}
+        justifyContent={"center"}
+      >
+        <Icon as={SiBitcoinsv} fontSize={42} color={tokens.titleYellow} />
         {collapse && (
           <Box>
             <Text
-              fontSize={"3xl"}
+              w={64}
+              fontSize={"2.5rem"}
               fontWeight={"bold"}
               letterSpacing={"tight"}
-              w={64}
               color={tokens.title}
             >
               Nairobi
               <Text as={"span"} ml={1} color={tokens.titleYellow}>
                 .
               </Text>
-              <Text
+              {/* <Text
                 as={"span"}
                 fontSize={"md"}
                 ml={1}
                 color={tokens.titleYellow}
               >
-                Bot Crypto Coin
-              </Text>
+                Crypto Coin
+              </Text> */}
             </Text>
           </Box>
         )}

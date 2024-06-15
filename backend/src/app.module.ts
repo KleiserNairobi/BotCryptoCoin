@@ -1,10 +1,10 @@
 import {Module} from '@nestjs/common';
 import {ConfigModule, ConfigService} from '@nestjs/config';
 import {TypeOrmModule} from '@nestjs/typeorm';
-import { UsersModule } from './users/users.module';
-import { AuthModule } from './auth/auth.module';
-import { TokenModule } from './token/token.module';
-import { BinanceModule } from './binance/binance.module';
+import {UsersModule} from './users/users.module';
+import {AuthModule} from './auth/auth.module';
+import {TokenModule} from './token/token.module';
+import {BinanceModule} from './binance/binance.module';
 
 @Module({
   imports: [
