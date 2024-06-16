@@ -28,7 +28,7 @@ export default function Dashboard() {
       </Flex>
       <Flex w={"100%"} mt={6} mb={6}>
         <Card overflow={"hidden"} w={"100%"}>
-          <CardHeader bg={"gray.100"}>
+          <CardHeader>
             <Heading size="md">Mercado 24h</Heading>
           </CardHeader>
           <CardBody mt={-8} mb={-6}>
