@@ -41,7 +41,7 @@ export function NavItem({ item, collapse, isActive, onClick }: NavItemProps) {
           to={path ? path : ""}
           gap={1}
           w="full"
-          p={"10px"}
+          p={"8px"}
           display="flex"
           alignItems="center"
           borderRadius="md"
@@ -49,7 +49,7 @@ export function NavItem({ item, collapse, isActive, onClick }: NavItemProps) {
           color={isActive ? "gray.800" : "gray.600"}
           bgColor={isActive ? "#eaefe8" : "transparent"}
           _hover={{
-            padding: "10px",
+            padding: "8px",
             textDecoration: "none",
             color: "gray.800",
             bgColor: "#eaefe8",

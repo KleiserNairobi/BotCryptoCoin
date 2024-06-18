@@ -44,7 +44,7 @@ const allUsers: User[] = Array.from({ length: 100 }, (_, index) => ({
   role: index % 2 === 0 ? "Admin" : "User",
 }));
 
-export default function Symbols() {
+export function Simbolos() {
   const tokens = useTokens();
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [itemsPerPage, setItemsPerPage] = useState<number>(10);
@@ -72,7 +72,14 @@ export default function Symbols() {
 
   return (
     <>
-      <Flex w={"full"} h={"full"} flexDir={"column"} p={4} borderRadius={"3xl"}>
+      <Flex
+        w={"full"}
+        h={"full"}
+        flexDir={"column"}
+        p={4}
+        borderRadius={"3xl"}
+        bg={"#F9FAF4"}
+      >
         <HStack justify={"space-between"}>
           <Heading mt={6} mb={6} color={tokens.title}>
             Usuários

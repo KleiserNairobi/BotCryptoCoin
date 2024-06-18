@@ -34,6 +34,7 @@ export const theme = extendTheme({
   // "#537D3D"
   // "#83B868"
   // "#CCD7C5"
+  // "#F9FAF4"
 
   styles: {
     global: (props: GlobalStyleProps) => ({

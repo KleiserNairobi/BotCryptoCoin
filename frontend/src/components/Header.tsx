@@ -38,11 +38,11 @@ export function Header({ titulo, collapse, setCollapse }: HeaderProps) {
           aria-label="Menu"
           onClick={() => setCollapse(!collapse)}
           //colorScheme={"teal"}
-          bg={"yellow.200"}
-          color={tokens.subtitle}
+          bgColor={tokens.bgMenu}
+          color={"#537D3D"}
           _hover={{
-            color: tokens.title,
-            bgColor: "yellow.400",
+            color: "gray.800",
+            bgColor: "#D5E3C8",
           }}
         />
         <IconButton
@@ -53,11 +53,11 @@ export function Header({ titulo, collapse, setCollapse }: HeaderProps) {
           }
           aria-label="Menu"
           onClick={toggleColorMode}
-          bg={"white"}
-          color={tokens.subtitle}
+          bgColor={tokens.bgMenu}
+          color={"#537D3D"}
           _hover={{
-            color: tokens.title,
-            bgColor: "yellow.400",
+            color: "gray.800",
+            bgColor: "#D5E3C8",
           }}
         />
         <Heading ml={4}>{titulo}</Heading>

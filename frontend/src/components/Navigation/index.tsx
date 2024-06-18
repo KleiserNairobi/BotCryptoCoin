@@ -8,6 +8,8 @@ import {
 import { AiOutlineDashboard } from "react-icons/ai";
 import { NavItem } from "./NavItem";
 import { useState } from "react";
+import { FiUser } from "react-icons/fi";
+import { ImCoinDollar } from "react-icons/im";
 
 type NavigationProps = {
   collapse: boolean;
@@ -38,9 +40,21 @@ const items = [
   },
   {
     type: "link",
+    label: "Símbolos",
+    icon: ImCoinDollar,
+    path: "/simbolos",
+  },
+  {
+    type: "link",
+    label: "Usuários",
+    icon: FiUser,
+    path: "/usuarios",
+  },
+  {
+    type: "link",
     label: "Configurações",
     icon: MdOutlineSettingsSuggest,
-    path: "/symbols",
+    path: "/configuracoes",
   },
   {
     type: "link",
@@ -59,7 +73,7 @@ export function Navigation({ collapse }: NavigationProps) {
   return (
     <List w={"full"} mt={8} ml={6}>
       {items.map((item, index) => (
-        <ListItem key={index}>
+        <ListItem key={index} mb={1}>
           <NavItem
             item={item}
             isActive={index === activeIndex}
