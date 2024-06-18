@@ -20,12 +20,15 @@ export function Header({ titulo, collapse, setCollapse }: HeaderProps) {
   const { toggleColorMode, colorMode } = useColorMode();
   return (
     <Flex
-      pb={3}
-      mr={6}
+      //pb={3}
+      //mr={6}
+      pl={6}
+      pr={6}
+      h={"full"}
+      w={"full"}
       alignItems={"center"}
       justifyContent={"space-between"}
-      borderColor={tokens.line}
-      borderBottomWidth={1}
+      bg={tokens.bgHeader}
     >
       <Flex gap={1}>
         <IconButton

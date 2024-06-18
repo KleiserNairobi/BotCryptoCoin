@@ -4,6 +4,7 @@ import {
   Link as ChakraLink,
   ListIcon,
   Text,
+  HStack,
 } from "@chakra-ui/react";
 import { IconType } from "react-icons";
 import { Link as RouterLink } from "react-router-dom";
@@ -30,7 +31,7 @@ export function NavItem({ item, collapse, isActive, onClick }: NavItemProps) {
   if (item.type === "link") {
     return (
       <Box
-        my={2}
+        mr={12}
         display={"flex"}
         alignItems={"center"}
         justifyContent={"center"}
@@ -43,21 +44,24 @@ export function NavItem({ item, collapse, isActive, onClick }: NavItemProps) {
           p={"10px"}
           display="flex"
           alignItems="center"
-          justifyContent={!collapse ? "center" : ""}
-          fontWeight="medium"
-          color={isActive ? tokens.menuTitleBold : tokens.menuTitle}
-          bgColor={isActive ? tokens.bgMenuFocus : "transparent"}
+          borderRadius="md"
+          fontWeight={isActive ? "medium" : "normal"}
+          color={isActive ? "gray.800" : "gray.600"}
+          bgColor={isActive ? "#eaefe8" : "transparent"}
           _hover={{
             padding: "10px",
             textDecoration: "none",
-            color: tokens.menuTitleBold,
-            bgColor: tokens.bgMenuFocus,
+            color: "gray.800",
+            bgColor: "#eaefe8",
             borderRadius: "md",
+            fontWeight: "medium",
           }}
           onClick={onClick}
         >
-          <ListIcon as={icon} fontSize={22} m={0} />
-          {collapse && <Text>{label}</Text>}
+          <HStack minH={6} alignItems={"center"}>
+            <ListIcon as={icon} fontSize={22} color={"#537D3D"} />
+            {collapse && <Text>{label}</Text>}
+          </HStack>
         </ChakraLink>
       </Box>
     );
@@ -65,15 +69,13 @@ export function NavItem({ item, collapse, isActive, onClick }: NavItemProps) {
 
   return (
     <Heading
+      mb={2}
       color={tokens.menuLabel}
       fontWeight="medium"
       textTransform="uppercase"
       fontSize="sm"
-      //borderColor="gray.900"
-      pt={collapse ? 0 : 0}
-      my={0}
     >
-      <Text display={collapse ? "flex" : "none"}>{label}</Text>
+      <Text>{label}</Text>
     </Heading>
   );
 }

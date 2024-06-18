@@ -10,10 +10,12 @@ export function Logo({ collapse }: LogoProps) {
   const tokens = useTokens();
   return (
     <Flex
-      h={"60px"}
-      //bg={"cyan.100"}
-      pb={collapse ? 4 : 6}
       w={"full"}
+      bg={tokens.bgHeader}
+      //h={"60px"}
+      //bg={"cyan.100"}
+      //pb={collapse ? 4 : 6}
+      //w={"full"}
       //mt={collapse ? 0 : 2}
       alignItems={"center"}
       justifyContent={"space-between"}
@@ -23,6 +25,8 @@ export function Logo({ collapse }: LogoProps) {
     >
       <Box
         gap={2}
+        h={"full"}
+        w={"full"}
         display={"flex"}
         alignItems={"center"}
         justifyContent={"center"}
@@ -31,7 +35,7 @@ export function Logo({ collapse }: LogoProps) {
         {collapse && (
           <Box>
             <Text
-              w={64}
+              //w={64}
               fontSize={"2.5rem"}
               fontWeight={"bold"}
               letterSpacing={"tight"}
@@ -41,14 +45,16 @@ export function Logo({ collapse }: LogoProps) {
               <Text as={"span"} ml={1} color={tokens.titleYellow}>
                 .
               </Text>
-              {/* <Text
+              <Text
                 as={"span"}
                 fontSize={"md"}
                 ml={1}
+                fontFamily={"Roboto"}
+                fontWeight={"400"}
                 color={tokens.titleYellow}
               >
-                Crypto Coin
-              </Text> */}
+                Bot
+              </Text>
             </Text>
           </Box>
         )}

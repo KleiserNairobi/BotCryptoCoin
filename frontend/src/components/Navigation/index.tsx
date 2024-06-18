@@ -57,7 +57,7 @@ export function Navigation({ collapse }: NavigationProps) {
     setActiveIndex(index);
   };
   return (
-    <List w={"full"} mt={8}>
+    <List w={"full"} mt={8} ml={6}>
       {items.map((item, index) => (
         <ListItem key={index}>
           <NavItem
