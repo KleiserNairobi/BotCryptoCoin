@@ -1,16 +1,41 @@
 import { HStack, Flex, Box } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Sidebar } from "../components/Sidebar";
 import { useTokens } from "../styles/tokens";
 import { Header } from "../components/Header";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
+import { useAppContext } from "../contexts/AppContext";
 
 export default function Home() {
   const tokens = useTokens();
   const [collapse, setCollapse] = useState(true);
 
+  const location = useLocation();
+  const { setTitle } = useAppContext();
+
+  useEffect(() => {
+    const pathToTitleMap: { [key: string]: string } = {
+      "/dashboard": "Dashboard",
+      "/automacoes": "Automações",
+      "/ordens": "Ordens",
+      "/simbolos": "Símbolos",
+      "/usuarios": "Usuários",
+      "/configuracoes": "Configurações",
+      "/sair": "Sair",
+    };
+    const title = pathToTitleMap[location.pathname] || "Home";
+    setTitle(title);
+  }, [location, setTitle]);
+
   return (
-    <HStack w={"full"} h={"100vh"} gap={0.5} overflowX="hidden">
+    <HStack
+      w={"full"}
+      maxW={1480}
+      h={"100vh"}
+      mx={"auto"}
+      gap={0.5}
+      overflowX="hidden"
+    >
       <Flex
         as={"aside"}
         w={"full"}

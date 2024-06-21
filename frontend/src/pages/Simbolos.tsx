@@ -23,7 +23,7 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import { Input } from "../components/form/Input";
+import { Input } from "../components/Form/Input";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import { MdFirstPage, MdLastPage, MdMailOutline } from "react-icons/md";
 import { TbUser } from "react-icons/tb";

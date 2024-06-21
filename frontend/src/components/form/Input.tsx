@@ -18,11 +18,21 @@ interface InputProps extends ChakraInputProps {
 export function Input({ name, label, icon: Icon, ...rest }: InputProps) {
   const tokens = useTokens();
   const [isFocused, setIsFocused] = useState(false);
-  const iconColor = isFocused ? "#ED8936" : "#A0AEC0";
+  const iconColor = isFocused ? "#84b969" : "#bad5a8";
+
   return (
     <FormControl>
-      {!!label && <FormLabel htmlFor={name}>{label}</FormLabel>}
-      <InputGroup size={"lg"}>
+      {!!label && (
+        <FormLabel
+          mb={1}
+          htmlFor={name}
+          fontFamily={"Inter Tight"}
+          fontWeight={400}
+        >
+          {label}
+        </FormLabel>
+      )}
+      <InputGroup size={"md"}>
         {Icon && (
           <InputLeftElement>
             <Icon color={iconColor} size={22} />
@@ -32,8 +42,8 @@ export function Input({ name, label, icon: Icon, ...rest }: InputProps) {
           id={name}
           name={name}
           variant={"outline"}
-          bgColor={tokens.inputBg}
-          focusBorderColor={tokens.inputBorda}
+          bgColor={tokens.bgMain}
+          focusBorderColor={"#84b969"}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
           {...rest}

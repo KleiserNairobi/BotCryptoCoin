@@ -1,8 +1,11 @@
-import { Router } from "./Router";
-//import { Principal } from "./pages/Principal";
-//import Login from "./pages/Login";
+//import { Router } from "./Router";
+import { AppProvider } from "./contexts/AppContext";
+import Login from "./pages/Login";
 
 export default function App() {
-  return <Router />;
-  //return <Login />;
+  return (
+    <AppProvider>
+      <Login />
+    </AppProvider>
+  );
 }

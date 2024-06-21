@@ -8,6 +8,7 @@ import {
 } from "@chakra-ui/react";
 import { MdMenu, MdBrightness2, MdOutlineWbSunny } from "react-icons/md";
 import { useTokens } from "../styles/tokens";
+import { useAppContext } from "../contexts/AppContext";
 
 type HeaderProps = {
   titulo?: string;
@@ -15,13 +16,12 @@ type HeaderProps = {
   setCollapse: (collapse: boolean) => void;
 };
 
-export function Header({ titulo, collapse, setCollapse }: HeaderProps) {
+export function Header({ collapse, setCollapse }: HeaderProps) {
   const tokens = useTokens();
+  const { title } = useAppContext();
   const { toggleColorMode, colorMode } = useColorMode();
   return (
     <Flex
-      //pb={3}
-      //mr={6}
       pl={6}
       pr={6}
       h={"full"}
@@ -37,7 +37,6 @@ export function Header({ titulo, collapse, setCollapse }: HeaderProps) {
           icon={<MdMenu />}
           aria-label="Menu"
           onClick={() => setCollapse(!collapse)}
-          //colorScheme={"teal"}
           bgColor={tokens.bgMenu}
           color={"#537D3D"}
           _hover={{
@@ -60,32 +59,37 @@ export function Header({ titulo, collapse, setCollapse }: HeaderProps) {
             bgColor: "#D5E3C8",
           }}
         />
-        <Heading ml={4}>{titulo}</Heading>
+        <Heading ml={4} color={"gray.600"} fontFamily={"Inter Tight"}>
+          {title}
+        </Heading>
       </Flex>
-      <Flex
-        //p={2}
-        gap={2}
-        alignItems={"center"}
-        justifyContent={"space-between"}
-        //flexDirection={collapse ? "row" : "column-reverse"}
-        //borderRadius="full"
-        //borderColor="gray.600"
-        //borderWidth={collapse ? 1 : 0}
-      >
+      <Flex gap={2} alignItems={"center"} justifyContent={"space-between"}>
         <Flex
           gap={4}
           flexDir={"column"}
           alignItems={"flex-end"}
           justifyContent={"center"}
         >
-          <Text fontSize="sm" fontWeight="bold" pb="0" lineHeight={0}>
+          <Text
+            fontSize="sm"
+            color="gray.900"
+            pb="0"
+            lineHeight={0}
+            fontFamily={"Inter Tight"}
+          >
             Kleiser Nairobi
           </Text>
-          <Text as={"small"} color="gray.500" fontSize={13} lineHeight={0}>
+          <Text
+            as={"small"}
+            color="gray.500"
+            fontSize={13}
+            lineHeight={0}
+            fontFamily={"Inter Tight"}
+          >
             kleiser.nairobi@gmail.com
           </Text>
         </Flex>
-        <Avatar name="Kleiser Nairobi" bg={tokens.titleYellow} />
+        <Avatar name="Kleiser Nairobi" color={"white"} bg={"#537D3D"} />
       </Flex>
     </Flex>
   );

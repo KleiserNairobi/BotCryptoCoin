@@ -12,6 +12,13 @@ export const theme = extendTheme({
     heading: "Roboto",
     body: "Roboto",
   },
+  textStyles: {
+    menu: {
+      fontFamily: "Roboto",
+      fontWeight: "400",
+      fontSize: "16px",
+    },
+  },
   colors: {
     bgDesktop: {
       light: "#C3D6B0",
@@ -33,6 +40,8 @@ export const theme = extendTheme({
 
   // "#537D3D"
   // "#83B868"
+  // "#9fc789"
+  // "#bad5a8"
   // "#CCD7C5"
   // "#F9FAF4"
 

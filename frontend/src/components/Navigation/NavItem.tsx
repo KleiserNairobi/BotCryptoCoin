@@ -38,7 +38,7 @@ export function NavItem({ item, collapse, isActive, onClick }: NavItemProps) {
       >
         <ChakraLink
           as={RouterLink}
-          to={path ? path : ""}
+          to={path || ""}
           gap={1}
           w="full"
           p={"8px"}
@@ -48,6 +48,8 @@ export function NavItem({ item, collapse, isActive, onClick }: NavItemProps) {
           fontWeight={isActive ? "medium" : "normal"}
           color={isActive ? "gray.800" : "gray.600"}
           bgColor={isActive ? "#eaefe8" : "transparent"}
+          //borderLeftWidth="3px"
+          //borderLeftColor={isActive ? "#537D3D" : "#F9FAF5"}
           _hover={{
             padding: "8px",
             textDecoration: "none",

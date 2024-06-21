@@ -16,7 +16,7 @@ import {
   MdMailOutline,
   MdOutlineWbSunny,
 } from "react-icons/md";
-import { Input } from "../components/form/Input";
+import { Input } from "../components/Form/Input";
 import { useTokens } from "../styles/tokens";
 import { TbUser } from "react-icons/tb";
 
@@ -34,13 +34,15 @@ export default function Login() {
     <Flex
       w={"100%"}
       h={"100%"}
+      //maxW={1480}
+      mx={"auto"}
       alignItems={"center"}
       justifyContent={"space-between"}
     >
       <Flex
         w={"50%"}
         h={"100vh"}
-        bg={tokens.bgTelaLoginEsquerda}
+        bg={tokens.bgHeader}
         alignItems={"center"}
         flexDirection={"column"}
       >
@@ -85,7 +87,7 @@ export default function Login() {
       <Flex
         w={"50%"}
         h={"100vh"}
-        bg={tokens.bgTelaLoginDireita}
+        bg={tokens.bgMenu}
         alignItems={"center"}
         justifyContent={"center"}
       >
@@ -101,12 +103,22 @@ export default function Login() {
                     <MdBrightness2 />
                   )
                 }
+                bgColor={tokens.bgHeader}
+                color={"#537D3D"}
+                _hover={{
+                  color: "gray.800",
+                  bgColor: "#D5E3C8",
+                }}
                 onClick={toggleColorMode}
               />
               <Button
                 ml={2}
-                colorScheme="orange"
                 onClick={() => setLogin(!login)}
+                bg={"#bad5a8"}
+                _hover={{
+                  color: "gray.800",
+                  bgColor: "#84b969",
+                }}
               >
                 Registrar
               </Button>
@@ -128,7 +140,16 @@ export default function Login() {
                 label="Senha *"
                 icon={MdLockOutline}
               />
-              <Button type="submit" mt={16} size={"lg"} colorScheme={"orange"}>
+              <Button
+                type="submit"
+                mt={16}
+                size={"lg"}
+                bg={"#bad5a8"}
+                _hover={{
+                  color: "gray.800",
+                  bgColor: "#84b969",
+                }}
+              >
                 Entrar
               </Button>
             </Stack>
@@ -145,11 +166,21 @@ export default function Login() {
                     <MdBrightness2 />
                   )
                 }
+                bgColor={tokens.bgHeader}
+                color={"#537D3D"}
+                _hover={{
+                  color: "gray.800",
+                  bgColor: "#D5E3C8",
+                }}
                 onClick={toggleColorMode}
               />
               <Button
                 ml={2}
-                colorScheme="orange"
+                bg={"#bad5a8"}
+                _hover={{
+                  color: "gray.800",
+                  bgColor: "#84b969",
+                }}
                 onClick={() => setLogin(!login)}
               >
                 Logar
@@ -182,7 +213,16 @@ export default function Login() {
                 label="Confirme a senha *"
                 icon={MdLockOutline}
               />
-              <Button type="submit" mt={16} size={"lg"} colorScheme={"orange"}>
+              <Button
+                type="submit"
+                mt={16}
+                size={"lg"}
+                bg={"#bad5a8"}
+                _hover={{
+                  color: "gray.800",
+                  bgColor: "#84b969",
+                }}
+              >
                 Confirmar
               </Button>
             </Stack>

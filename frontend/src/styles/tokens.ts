@@ -1,6 +1,7 @@
 import { useColorModeValue } from "@chakra-ui/react";
 
 export function useTokens() {
+  const bgDesktop = useColorModeValue("bgDesktop.light", "bgDesktop.dark");
   const bgMenu = useColorModeValue("bgMenu.light", "bgMenu.dark");
   const bgMain = useColorModeValue("bgMain.light", "bgMain.dark");
   const bgHeader = useColorModeValue("bgHeader.light", "bgHeader.dark");
@@ -34,6 +35,7 @@ export function useTokens() {
   // );
 
   return {
+    bgDesktop,
     bgMenu,
     bgMain,
     bgHeader,
