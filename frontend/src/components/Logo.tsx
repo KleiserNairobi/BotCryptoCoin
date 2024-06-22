@@ -11,7 +11,7 @@ export function Logo({ collapse }: LogoProps) {
   return (
     <Flex
       w={"full"}
-      bg={tokens.bgHeader}
+      bg={tokens.headerBg}
       alignItems={"center"}
       justifyContent={"space-between"}
       flexDir={collapse ? "row" : "column"}

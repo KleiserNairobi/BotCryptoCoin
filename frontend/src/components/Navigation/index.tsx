@@ -48,13 +48,13 @@ const items = [
     path: "/simbolos",
     title: "Símbolos",
   },
-  {
-    type: "link",
-    label: "Usuários",
-    icon: FiUser,
-    path: "/usuarios",
-    title: "Usuários",
-  },
+  // {
+  //   type: "link",
+  //   label: "Usuários",
+  //   icon: FiUser,
+  //   path: "/usuarios",
+  //   title: "Usuários",
+  // },
   {
     type: "link",
     label: "Configurações",

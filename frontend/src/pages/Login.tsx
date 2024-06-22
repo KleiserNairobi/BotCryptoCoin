@@ -42,7 +42,7 @@ export default function Login() {
       <Flex
         w={"50%"}
         h={"100vh"}
-        bg={tokens.bgHeader}
+        bg={tokens.headerBg}
         alignItems={"center"}
         flexDirection={"column"}
       >
@@ -87,7 +87,7 @@ export default function Login() {
       <Flex
         w={"50%"}
         h={"100vh"}
-        bg={tokens.bgMenu}
+        bg={tokens.bgMain}
         alignItems={"center"}
         justifyContent={"center"}
       >
@@ -103,11 +103,11 @@ export default function Login() {
                     <MdBrightness2 />
                   )
                 }
-                bgColor={tokens.bgHeader}
-                color={"#537D3D"}
+                bgColor={tokens.mainBtnBg}
+                color={tokens.mainBtnIcon}
                 _hover={{
-                  color: "gray.800",
-                  bgColor: "#D5E3C8",
+                  color: tokens.mainBtnIconHover,
+                  bgColor: tokens.mainBtnBgHover,
                 }}
                 onClick={toggleColorMode}
               />
@@ -166,11 +166,11 @@ export default function Login() {
                     <MdBrightness2 />
                   )
                 }
-                bgColor={tokens.bgHeader}
-                color={"#537D3D"}
+                bgColor={tokens.mainBtnBg}
+                color={tokens.mainBtnIcon}
                 _hover={{
-                  color: "gray.800",
-                  bgColor: "#D5E3C8",
+                  color: tokens.mainBtnIconHover,
+                  bgColor: tokens.mainBtnBgHover,
                 }}
                 onClick={toggleColorMode}
               />
@@ -187,7 +187,7 @@ export default function Login() {
               </Button>
             </Box>
             <Heading>Registrar-se</Heading>
-            <Text>Informe os dados baixo para se registrar!</Text>
+            <Text>Informe os dados abaixo para se registrar!</Text>
             <Stack mt={10} spacing={4}>
               <Input
                 name="cadUsername"

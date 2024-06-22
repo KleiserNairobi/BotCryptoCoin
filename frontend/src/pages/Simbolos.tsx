@@ -1,199 +1,122 @@
 import {
-  Box,
   Button,
+  Card,
+  CardBody,
+  CardHeader,
   Flex,
+  HStack,
   Heading,
-  Select,
   Table,
+  TableContainer,
   Tbody,
   Td,
+  Text,
   Th,
   Thead,
   Tr,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalCloseButton,
-  ModalFooter,
-  ModalBody,
-  useDisclosure,
-  HStack,
-  IconButton,
-  Stack,
 } from "@chakra-ui/react";
-import { useState } from "react";
-import { Input } from "../components/Form/Input";
-import { GrFormNext, GrFormPrevious } from "react-icons/gr";
-import { MdFirstPage, MdLastPage, MdMailOutline } from "react-icons/md";
-import { TbUser } from "react-icons/tb";
 import { useTokens } from "../styles/tokens";
-
-interface User {
-  id: number;
-  name: string;
-  email: string;
-  role: string;
-}
-
-// Dados estáticos para a tabela
-const allUsers: User[] = Array.from({ length: 100 }, (_, index) => ({
-  id: index + 1,
-  name: `User ${index + 1}`,
-  email: `user${index + 1}@example.com`,
-  role: index % 2 === 0 ? "Admin" : "User",
-}));
+import { MdOutlineSync } from "react-icons/md";
 
 export function Simbolos() {
   const tokens = useTokens();
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const [itemsPerPage, setItemsPerPage] = useState<number>(10);
-  const { isOpen, onOpen, onClose } = useDisclosure();
-
-  const totalPages = Math.ceil(allUsers.length / itemsPerPage);
-
-  const handlePageChange = (newPage: number) => {
-    if (newPage > 0 && newPage <= totalPages) {
-      setCurrentPage(newPage);
-    }
-  };
-
-  const handleItemsPerPageChange = (
-    event: React.ChangeEvent<HTMLSelectElement>
-  ) => {
-    setItemsPerPage(Number(event.target.value));
-    setCurrentPage(1);
-  };
-
-  const currentUsers = allUsers.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
-  );
-
   return (
-    <>
-      <Flex
-        w={"full"}
-        h={"full"}
-        flexDir={"column"}
-        p={4}
-        borderRadius={"3xl"}
-        bg={"#F9FAF4"}
+    <Flex h={"100%"} w={"100%"} py={6} flexDir={"column"}>
+      <Card
+        bg={tokens.bgMain}
+        borderColor={"#C3D6B0"}
+        borderWidth={1}
+        mr={6}
+        h={"100%"}
       >
-        <HStack justify={"space-between"}>
-          <Heading mt={6} mb={6} color={tokens.title}>
-            Usuários
-          </Heading>
-          <Button onClick={onOpen} colorScheme="yellow">
-            Cadastrar
-          </Button>
-        </HStack>
-        <Box overflowX="auto">
-          <Table>
-            <Thead bg={"gray.100"}>
-              <Tr>
-                <Th>ID</Th>
-                <Th>Name</Th>
-                <Th>Email</Th>
-                <Th>Role</Th>
-              </Tr>
-            </Thead>
-            <Tbody>
-              {currentUsers.map((user) => (
-                <Tr key={user.id}>
-                  <Td>{user.id}</Td>
-                  <Td>{user.name}</Td>
-                  <Td>{user.email}</Td>
-                  <Td>{user.role}</Td>
-                </Tr>
-              ))}
-            </Tbody>
-          </Table>
-        </Box>
-
-        <Flex mt={6} p={4} justifyContent="space-between" alignItems="center">
-          <Select
-            width="auto"
-            value={itemsPerPage}
-            onChange={handleItemsPerPageChange}
+        <CardHeader>
+          <HStack
+            h={"full"}
+            w={"full"}
+            align={"center"}
+            mx={"auto"}
+            justifyContent={"space-between"}
           >
-            <option value={10}>10</option>
-            <option value={15}>15</option>
-            <option value={20}>20</option>
-          </Select>
-
-          <Flex>
-            <IconButton
-              mr={1}
-              variant={"solid"}
-              fontSize={"20px"}
-              icon={<MdFirstPage />}
-              aria-label="Primeiro"
-              onClick={() => handlePageChange(1)}
-              isDisabled={currentPage === 1}
-            />
-            <IconButton
-              mr={1}
-              variant={"solid"}
-              fontSize={"20px"}
-              icon={<GrFormPrevious />}
-              aria-label="Anterior"
-              onClick={() => handlePageChange(currentPage - 1)}
-              isDisabled={currentPage === 1}
-            />
-            <IconButton
-              mr={1}
-              variant={"solid"}
-              fontSize={"20px"}
-              icon={<GrFormNext />}
-              aria-label="Próximo"
-              onClick={() => handlePageChange(currentPage + 1)}
-              isDisabled={currentPage === totalPages}
-            />
-            <IconButton
-              mr={1}
-              variant={"solid"}
-              fontSize={"20px"}
-              icon={<MdLastPage />}
-              aria-label="Último"
-              onClick={() => handlePageChange(totalPages)}
-              isDisabled={currentPage === totalPages}
-            />
-          </Flex>
-        </Flex>
-      </Flex>
-      <Modal isOpen={isOpen} onClose={onClose} isCentered>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Edição de usuário</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <Stack spacing={4}>
-              <Input
-                name="cadUsername"
-                type="text"
-                label="Nome *"
-                icon={TbUser}
-              />
-              <Input
-                name="cadEmail"
-                type="email"
-                label="E-Mail *"
-                icon={MdMailOutline}
-              />
-            </Stack>
-          </ModalBody>
-
-          <ModalFooter>
-            <Button colorScheme="yellow" mr={3}>
-              Confirmar
+            <Heading size={"md"}>Listagem de símbolos</Heading>
+            <Button
+              isLoading={false}
+              loadingText="Sincronizando"
+              bg={"#bad5a8"}
+              leftIcon={<MdOutlineSync />}
+              _hover={{
+                color: "gray.800",
+                bgColor: "#84b969",
+              }}
+            >
+              Sincronizar
             </Button>
-            <Button variant="outline" onClick={onClose}>
-              Cancelar
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
-    </>
+          </HStack>
+        </CardHeader>
+        <CardBody overflowY={"hidden"} flex={1}>
+          <TableContainer
+            overflowY="auto"
+            //position="relative"
+            //w={"100%"}
+            h={"100%"}
+          >
+            <Table size="sm">
+              <Thead
+                top={0}
+                position="sticky"
+                zIndex="docked"
+                bg={tokens.bgMain}
+              >
+                <Tr>
+                  <Th fontSize={"13px"}>Símbolo</Th>
+                  <Th
+                    isNumeric
+                    fontSize={"13px"}
+                    style={{ textAlign: "right" }}
+                  >
+                    Precisão da <br />
+                    Moeda Base
+                  </Th>
+                  <Th
+                    isNumeric
+                    fontSize={"13px"}
+                    style={{ textAlign: "right" }}
+                  >
+                    Precisão da <br />
+                    Parte Decimal
+                  </Th>
+                  <Th
+                    isNumeric
+                    fontSize={"13px"}
+                    style={{ textAlign: "right" }}
+                  >
+                    Valor <br />
+                    Nominal Mínimo
+                  </Th>
+                  <Th
+                    isNumeric
+                    fontSize={"13px"}
+                    style={{ textAlign: "right" }}
+                  >
+                    Tamanho <br />
+                    Mínimo do Lote
+                  </Th>
+                </Tr>
+              </Thead>
+              <Tbody>
+                {[...Array(50)].map((_, index) => (
+                  <Tr key={index}>
+                    <Td>BTC-USDT</Td>
+                    <Td isNumeric>8</Td>
+                    <Td isNumeric>8</Td>
+                    <Td isNumeric>10.00000000</Td>
+                    <Td isNumeric>0.00001000</Td>
+                  </Tr>
+                ))}
+              </Tbody>
+            </Table>
+          </TableContainer>
+        </CardBody>
+      </Card>
+    </Flex>
   );
 }

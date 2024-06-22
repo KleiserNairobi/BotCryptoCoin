@@ -24,25 +24,33 @@ export const theme = extendTheme({
       light: "#C3D6B0",
       dark: "#0C0F16",
     },
-    bgMenu: {
+    bgMain: {
       light: "#F9FAF5",
       dark: "#37404E",
     },
-    bgMain: {
-      light: "#FEFEFE",
-      dark: "#37404E",
-    },
-    bgHeader: {
-      light: "#E8EFE2",
-      dark: "#37404E",
-    },
+
+    headerBg: { light: "#E8EFE2", dark: "#37404E" },
+    headerBtnBg: { light: "#F9FAF3", dark: "#37404E" },
+    headerBtnBgHover: { light: "#D5E3C8", dark: "#37404E" },
+    headerBtnIcon: { light: "#537D3D", dark: "#37404E" },
+    headerBtnIconHover: { light: "gray.800", dark: "#37404E" },
+    headerAvatarBg: { light: "#6B9A52", dark: "#37404E" },
+
+    mainBtnBg: { light: "#EAEEE4", dark: "#37404E" },
+    mainBtnBgHover: { light: "#D5E3C8", dark: "#37404E" },
+    mainBtnIcon: { light: "#537D3D", dark: "#37404E" },
+    mainBtnIconHover: { light: "gray.800", dark: "#37404E" },
   },
 
   // "#537D3D"
+  // "#6B9A52"
   // "#83B868"
-  // "#9fc789"
-  // "#bad5a8"
+  // "#84B969"
+  // "#9FC789"
+  // "#BAD5A8"
   // "#CCD7C5"
+  // "#DBE3D5"
+  // "#EAEEE4"
   // "#F9FAF4"
 
   styles: {

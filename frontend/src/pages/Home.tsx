@@ -8,10 +8,9 @@ import { useAppContext } from "../contexts/AppContext";
 
 export default function Home() {
   const tokens = useTokens();
-  const [collapse, setCollapse] = useState(true);
-
   const location = useLocation();
   const { setTitle } = useAppContext();
+  const [collapse, setCollapse] = useState(true);
 
   useEffect(() => {
     const pathToTitleMap: { [key: string]: string } = {
@@ -41,7 +40,7 @@ export default function Home() {
         w={"full"}
         h={"full"}
         maxW={collapse ? 260 : 90}
-        bg={tokens.bgMenu}
+        bg={tokens.bgMain}
         alignItems={"start"}
         flexDir={"column"}
         justifyContent={"space-between"}

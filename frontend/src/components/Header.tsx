@@ -28,7 +28,7 @@ export function Header({ collapse, setCollapse }: HeaderProps) {
       w={"full"}
       alignItems={"center"}
       justifyContent={"space-between"}
-      bg={tokens.bgHeader}
+      bg={tokens.headerBg}
     >
       <Flex gap={1}>
         <IconButton
@@ -37,11 +37,11 @@ export function Header({ collapse, setCollapse }: HeaderProps) {
           icon={<MdMenu />}
           aria-label="Menu"
           onClick={() => setCollapse(!collapse)}
-          bgColor={tokens.bgMenu}
-          color={"#537D3D"}
+          bgColor={tokens.headerBtnBg}
+          color={tokens.headerBtnIcon}
           _hover={{
-            color: "gray.800",
-            bgColor: "#D5E3C8",
+            color: tokens.headerBtnIconHover,
+            bgColor: tokens.headerBtnBgHover,
           }}
         />
         <IconButton
@@ -52,11 +52,11 @@ export function Header({ collapse, setCollapse }: HeaderProps) {
           }
           aria-label="Menu"
           onClick={toggleColorMode}
-          bgColor={tokens.bgMenu}
-          color={"#537D3D"}
+          bgColor={tokens.headerBtnBg}
+          color={tokens.headerBtnIcon}
           _hover={{
-            color: "gray.800",
-            bgColor: "#D5E3C8",
+            color: tokens.headerBtnIconHover,
+            bgColor: tokens.headerBtnBgHover,
           }}
         />
         <Heading ml={4} color={"gray.600"} fontFamily={"Inter Tight"}>
@@ -89,7 +89,11 @@ export function Header({ collapse, setCollapse }: HeaderProps) {
             kleiser.nairobi@gmail.com
           </Text>
         </Flex>
-        <Avatar name="Kleiser Nairobi" color={"white"} bg={"#537D3D"} />
+        <Avatar
+          name="Kleiser Nairobi"
+          color={"white"}
+          bg={tokens.headerAvatarBg}
+        />
       </Flex>
     </Flex>
   );

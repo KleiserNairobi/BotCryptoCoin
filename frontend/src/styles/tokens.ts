@@ -2,61 +2,54 @@ import { useColorModeValue } from "@chakra-ui/react";
 
 export function useTokens() {
   const bgDesktop = useColorModeValue("bgDesktop.light", "bgDesktop.dark");
-  const bgMenu = useColorModeValue("bgMenu.light", "bgMenu.dark");
   const bgMain = useColorModeValue("bgMain.light", "bgMain.dark");
-  const bgHeader = useColorModeValue("bgHeader.light", "bgHeader.dark");
-
-  // const corDoTexto = useColorModeValue("black", "white");
-  // const corDeFundo = useColorModeValue("menu.light", "menu.dark");
-  // const bgTelaLoginEsquerda = useColorModeValue("white", "gray.700");
-  // const bgTelaLoginDireita = useColorModeValue("gray.50", "gray.800");
-  // const inputBg = useColorModeValue("white", "gray.700");
-  // const inputBorda = useColorModeValue("orange.400", "orange.400");
-  // const buttonBgPrimario = useColorModeValue("orange.400", "orange.400");
-  // const buttonBgSecundario = useColorModeValue("orange.400", "orange.400");
-  // const bgIcon = useColorModeValue("bgIcon.light", "bgIcon.dark");
-  // const bgMenuFocus = useColorModeValue("bgMenu.light", "bgMenu.dark");
-  // const menuLabel = useColorModeValue("menuLabel.light", "menuLabel.dark");
-  // const menuTitle = useColorModeValue("menuTitle.light", "menuTitle.dark");
-  // const menuTitleBold = useColorModeValue(
-  //   "menuTitleBold.light",
-  //   "menuTitleBold.dark"
-  // );
-  // const title = useColorModeValue("title.light", "title.dark");
-  // const subtitle = useColorModeValue("subtitle.light", "subtitle.dark");
-  // const titleYellow = useColorModeValue(
-  //   "titleYellow.light",
-  //   "titleYellow.dark"
-  // );
-  // const line = useColorModeValue("line.light", "line.dark");
-  // const bgHeaderCard = useColorModeValue(
-  //   "bgHeaderCard.light",
-  //   "bgHeaderCard.dark"
-  // );
+  const headerBg = useColorModeValue("headerBg.light", "headerBg.dark");
+  const headerBtnBg = useColorModeValue(
+    "headerBtnBg.light",
+    "headerBtnBg.dark"
+  );
+  const headerBtnBgHover = useColorModeValue(
+    "headerBtnBgHover.light",
+    "headerBtnBgHover.dark"
+  );
+  const headerBtnIcon = useColorModeValue(
+    "headerBtnIcon.light",
+    "headerBtnIcon.dark"
+  );
+  const headerBtnIconHover = useColorModeValue(
+    "headerBtnIconHover.light",
+    "headerBtnIconHover.dark"
+  );
+  const headerAvatarBg = useColorModeValue(
+    "headerAvatarBg.light",
+    "headerAvatarBg.dark"
+  );
+  const mainBtnBg = useColorModeValue("mainBtnBg.light", "mainBtnBg.dark");
+  const mainBtnBgHover = useColorModeValue(
+    "mainBtnBgHover.light",
+    "mainBtnBgHover.dark"
+  );
+  const mainBtnIcon = useColorModeValue(
+    "mainBtnIcon.light",
+    "mainBtnIcon.dark"
+  );
+  const mainBtnIconHover = useColorModeValue(
+    "mainBtnIconHover.light",
+    "mainBtnIconHover.dark"
+  );
 
   return {
     bgDesktop,
-    bgMenu,
     bgMain,
-    bgHeader,
-
-    // corDoTexto,
-    // corDeFundo,
-    // bgTelaLoginEsquerda,
-    // bgTelaLoginDireita,
-    // inputBg,
-    // inputBorda,
-    // buttonBgPrimario,
-    // buttonBgSecundario,
-    // title,
-    // subtitle,
-    // bgIcon,
-    // menuLabel,
-    // menuTitle,
-    // menuTitleBold,
-    // bgMenuFocus,
-    // titleYellow,
-    // line,
-    // bgHeaderCard,
+    headerBg,
+    headerBtnBg,
+    headerBtnBgHover,
+    headerBtnIcon,
+    headerBtnIconHover,
+    headerAvatarBg,
+    mainBtnBg,
+    mainBtnBgHover,
+    mainBtnIcon,
+    mainBtnIconHover,
   };
 }
