@@ -1,7 +1,6 @@
 import { useState } from "react";
 import {
   Flex,
-  Button,
   Stack,
   Heading,
   Text,
@@ -19,6 +18,8 @@ import {
 import { Input } from "../components/Form/Input";
 import { useTokens } from "../styles/tokens";
 import { TbUser } from "react-icons/tb";
+import { NButton } from "../components/Form/NButton";
+import { NIconButton } from "../components/Form/NIconButton";
 
 export default function Login() {
   const tokens = useTokens();
@@ -94,7 +95,7 @@ export default function Login() {
         {login ? (
           <Flex w={"80%"} flexDirection={"column"}>
             <Box mb={50} flexDir={"row"}>
-              <IconButton
+              <NIconButton
                 aria-label="lua"
                 icon={
                   colorMode === "light" ? (
@@ -103,25 +104,14 @@ export default function Login() {
                     <MdBrightness2 />
                   )
                 }
-                bgColor={tokens.mainBtnBg}
-                color={tokens.mainBtnIcon}
-                _hover={{
-                  color: tokens.mainBtnIconHover,
-                  bgColor: tokens.mainBtnBgHover,
-                }}
                 onClick={toggleColorMode}
               />
-              <Button
+              <NButton
                 ml={2}
+                size={"md"}
+                title="Registrar"
                 onClick={() => setLogin(!login)}
-                bg={"#bad5a8"}
-                _hover={{
-                  color: "gray.800",
-                  bgColor: "#84b969",
-                }}
-              >
-                Registrar
-              </Button>
+              />
             </Box>
             <Heading>Login</Heading>
             <Text>Digite seu e-mail e senha para entrar!</Text>
@@ -140,24 +130,13 @@ export default function Login() {
                 label="Senha *"
                 icon={MdLockOutline}
               />
-              <Button
-                type="submit"
-                mt={16}
-                size={"lg"}
-                bg={"#bad5a8"}
-                _hover={{
-                  color: "gray.800",
-                  bgColor: "#84b969",
-                }}
-              >
-                Entrar
-              </Button>
             </Stack>
+            <NButton mt={16} size={"lg"} type="submit" title="Entrar" />
           </Flex>
         ) : (
           <Flex w={"80%"} flexDirection={"column"}>
             <Box mb={50} flexDir={"row"}>
-              <IconButton
+              <NIconButton
                 aria-label="lua"
                 icon={
                   colorMode === "light" ? (
@@ -166,25 +145,9 @@ export default function Login() {
                     <MdBrightness2 />
                   )
                 }
-                bgColor={tokens.mainBtnBg}
-                color={tokens.mainBtnIcon}
-                _hover={{
-                  color: tokens.mainBtnIconHover,
-                  bgColor: tokens.mainBtnBgHover,
-                }}
                 onClick={toggleColorMode}
               />
-              <Button
-                ml={2}
-                bg={"#bad5a8"}
-                _hover={{
-                  color: "gray.800",
-                  bgColor: "#84b969",
-                }}
-                onClick={() => setLogin(!login)}
-              >
-                Logar
-              </Button>
+              <NButton ml={2} title="Logar" onClick={() => setLogin(!login)} />
             </Box>
             <Heading>Registrar-se</Heading>
             <Text>Informe os dados abaixo para se registrar!</Text>
@@ -213,19 +176,8 @@ export default function Login() {
                 label="Confirme a senha *"
                 icon={MdLockOutline}
               />
-              <Button
-                type="submit"
-                mt={16}
-                size={"lg"}
-                bg={"#bad5a8"}
-                _hover={{
-                  color: "gray.800",
-                  bgColor: "#84b969",
-                }}
-              >
-                Confirmar
-              </Button>
             </Stack>
+            <NButton mt={16} size={"lg"} type="submit" title="Confirmar" />
           </Flex>
         )}
       </Flex>
