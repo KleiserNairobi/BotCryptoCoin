@@ -1,8 +1,11 @@
-//import Login from "./Login";
-//import Dashboard from "./Dashboard";
-
-import Home from "./pages/Home";
+//import { Router } from "./Router";
+import { AppProvider } from "./contexts/AppContext";
+import Login from "./pages/Login";
 
 export default function App() {
-  return <Home />;
+  return (
+    <AppProvider>
+      <Login />
+    </AppProvider>
+  );
 }

@@ -1,7 +1,6 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import { Logo } from "./Logo";
 import { Navigation } from "./Navigation";
-import { AvatarBox } from "./AvatarBox";
 
 type SidebarProps = {
   collapse: boolean;
@@ -9,12 +8,11 @@ type SidebarProps = {
 
 export function Sidebar({ collapse }: SidebarProps) {
   return (
-    <>
-      <Box w={"full"}>
+    <Box h={"full"} w={"full"}>
+      <Flex minH={20} w={"full"}>
         <Logo collapse={collapse} />
-        <Navigation collapse={collapse} />
-      </Box>
-      <AvatarBox collapse={collapse} />
-    </>
+      </Flex>
+      <Navigation collapse={collapse} />
+    </Box>
   );
 }

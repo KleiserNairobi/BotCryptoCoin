@@ -7,6 +7,9 @@ import {
 } from "react-icons/md";
 import { AiOutlineDashboard } from "react-icons/ai";
 import { NavItem } from "./NavItem";
+import { useState } from "react";
+import { FiUser } from "react-icons/fi";
+import { ImCoinDollar } from "react-icons/im";
 
 type NavigationProps = {
   collapse: boolean;
@@ -21,40 +24,69 @@ const items = [
     type: "link",
     label: "Dashboard",
     icon: AiOutlineDashboard,
-    path: "/",
+    path: "/dashboard",
+    title: "Dashboard",
   },
   {
     type: "link",
     label: "Automações",
     icon: MdAlarmOn,
-    path: "/",
+    path: "/automacoes",
+    title: "Automações",
   },
   {
     type: "link",
     label: "Ordens",
     icon: MdOutlineDiscount,
-    path: "/",
+    path: "/ordens",
+    title: "Ordens",
   },
+  {
+    type: "link",
+    label: "Símbolos",
+    icon: ImCoinDollar,
+    path: "/simbolos",
+    title: "Símbolos",
+  },
+  // {
+  //   type: "link",
+  //   label: "Usuários",
+  //   icon: FiUser,
+  //   path: "/usuarios",
+  //   title: "Usuários",
+  // },
   {
     type: "link",
     label: "Configurações",
     icon: MdOutlineSettingsSuggest,
-    path: "/",
+    path: "/configuracoes",
+    title: "Configurações",
   },
   {
     type: "link",
     label: "Sair",
     icon: MdOutlineExitToApp,
-    path: "/",
+    path: "/sair",
+    title: "Sair",
   },
 ];
 
 export function Navigation({ collapse }: NavigationProps) {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const handleItemClick = (index: number) => {
+    setActiveIndex(index);
+  };
   return (
-    <List w={"full"} mt={8}>
+    <List w={"full"} mt={8} ml={6}>
       {items.map((item, index) => (
-        <ListItem key={index}>
-          <NavItem item={item} isActive={index === 0} collapse={collapse} />
+        <ListItem key={index} mb={1}>
+          <NavItem
+            item={item}
+            isActive={index === activeIndex}
+            collapse={collapse}
+            onClick={() => handleItemClick(index)}
+          />
         </ListItem>
       ))}
     </List>

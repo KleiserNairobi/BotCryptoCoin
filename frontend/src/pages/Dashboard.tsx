@@ -1,60 +1,129 @@
-import { Box, Flex, SimpleGrid, Text, theme } from "@chakra-ui/react";
-import { Header } from "../components/Header";
-import { Sidebar } from "../components/Sidebar";
-import Chart from "react-apexcharts";
-
-const options = {
-  chart: {
-    toolbar: { show: false },
-    zoom: { enabled: false },
-    foreColor: theme.colors.gray[500],
-  },
-  grid: { show: false },
-  dataLabels: { enabled: false },
-  tooltip: { enabled: false },
-  xaxis: {
-    type: "datetime",
-    axisBorder: { color: theme.colors.gray[600] },
-    axisTicks: { color: theme.colors.gray[600] },
-  },
-  fill: {
-    opacity: 0.3,
-    type: "gradient",
-    gradient: {
-      shade: "dark",
-      opacityFrom: 0.7,
-      opacityTo: 0.3,
-    },
-  },
-};
-
-const series = [{ name: "series1 ", data: [31, 120, 10, 28, 61, 18, 109] }];
+import {
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  Divider,
+  Flex,
+  Heading,
+  IconButton,
+  Select,
+  Table,
+  TableContainer,
+  Tbody,
+  Td,
+  Th,
+  Thead,
+  Tr,
+} from "@chakra-ui/react";
+import { CandleChart } from "./CandleChart";
+import { MdFirstPage, MdLastPage } from "react-icons/md";
+import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 
 export default function Dashboard() {
   return (
-    <Flex h={"100vh"} direction={"column"}>
-      <Header />
-      <Flex w={"100%"} my={6} mx={"auto"} px={6} maxWidth={1480}>
-        <Sidebar />
-        <SimpleGrid
-          flex={1}
-          gap={4}
-          minChildWidth={"320px"}
-          alignItems={"flex-start"}
-        >
-          <Box p={8} bg={"gray.800"} borderRadius={8} pb={4}>
-            <Text mb={4} fontSize={"lg"}>
-              Inscritos na semana
-            </Text>
-            <Chart type="area" height={160} options={options} series={series} />
-          </Box>
-          <Box p={8} bg={"gray.800"} borderRadius={8} pb={4}>
-            <Text mb={4} fontSize={"lg"}>
-              Taxa de abertura
-            </Text>
-            <Chart type="area" height={160} options={options} series={series} />
-          </Box>
-        </SimpleGrid>
+    <Flex direction={"column"} mr={6}>
+      <Flex w={"100%"} h={"500px"}>
+        <CandleChart simbolo="BTCUSDT" />
+      </Flex>
+      <Flex w={"100%"} mt={6} mb={6}>
+        <Card overflow={"hidden"} w={"100%"}>
+          <CardHeader>
+            <Heading size="md">Mercado 24h</Heading>
+          </CardHeader>
+          <CardBody mt={-8} mb={-6}>
+            <TableContainer
+              maxH={370}
+              overflowY="auto"
+              position="relative"
+              mt={6}
+              mb={6}
+              w={"100%"}
+            >
+              <Table size="sm">
+                <Thead
+                  position="sticky"
+                  top={0}
+                  zIndex="docked"
+                  bg="white"
+                  h={10}
+                >
+                  <Tr>
+                    <Th>Símbolo</Th>
+                    <Th isNumeric>Vlr. Abertura</Th>
+                    <Th isNumeric>Vlr. Máximo</Th>
+                    <Th isNumeric>Vlr. Mínimo</Th>
+                    <Th isNumeric>Vlr. Fechamento</Th>
+                  </Tr>
+                </Thead>
+                <Tbody>
+                  {[...Array(20)].map((_, index) => (
+                    <Tr key={index}>
+                      <Td>BTC-USDT</Td>
+                      <Td isNumeric>66.500,00</Td>
+                      <Td isNumeric>72.235,00</Td>
+                      <Td isNumeric>64.405,00</Td>
+                      <Td isNumeric>68.125,00</Td>
+                    </Tr>
+                  ))}
+                </Tbody>
+              </Table>
+            </TableContainer>
+          </CardBody>
+          <Divider />
+          <CardFooter h={"70px"}>
+            <Flex justifyContent="space-between" alignItems="center" w="100%">
+              <Select
+                width="auto"
+                //value={itemsPerPage}
+                //onChange={handleItemsPerPageChange}
+              >
+                <option value={10}>10</option>
+                <option value={15}>15</option>
+                <option value={20}>20</option>
+              </Select>
+
+              <Flex>
+                <IconButton
+                  mr={1}
+                  variant={"solid"}
+                  fontSize={"20px"}
+                  icon={<MdFirstPage />}
+                  aria-label="Primeiro"
+                  //onClick={() => handlePageChange(1)}
+                  //isDisabled={currentPage === 1}
+                />
+                <IconButton
+                  mr={1}
+                  variant={"solid"}
+                  fontSize={"20px"}
+                  icon={<GrFormPrevious />}
+                  aria-label="Anterior"
+                  //onClick={() => handlePageChange(currentPage - 1)}
+                  //isDisabled={currentPage === 1}
+                />
+                <IconButton
+                  mr={1}
+                  variant={"solid"}
+                  fontSize={"20px"}
+                  icon={<GrFormNext />}
+                  aria-label="Próximo"
+                  //onClick={() => handlePageChange(currentPage + 1)}
+                  //isDisabled={currentPage === totalPages}
+                />
+                <IconButton
+                  mr={1}
+                  variant={"solid"}
+                  fontSize={"20px"}
+                  icon={<MdLastPage />}
+                  aria-label="Último"
+                  //onClick={() => handlePageChange(totalPages)}
+                  //isDisabled={currentPage === totalPages}
+                />
+              </Flex>
+            </Flex>
+          </CardFooter>
+        </Card>
       </Flex>
     </Flex>
   );

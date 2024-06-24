@@ -1,31 +1,100 @@
-import { Flex, IconButton, useColorMode, Heading } from "@chakra-ui/react";
+import {
+  Flex,
+  IconButton,
+  useColorMode,
+  Heading,
+  Avatar,
+  Text,
+} from "@chakra-ui/react";
 import { MdMenu, MdBrightness2, MdOutlineWbSunny } from "react-icons/md";
+import { useTokens } from "../styles/tokens";
+import { useAppContext } from "../contexts/AppContext";
 
 type HeaderProps = {
-  titulo: string;
+  titulo?: string;
   collapse: boolean;
   setCollapse: (collapse: boolean) => void;
 };
 
-export function Header({ titulo, collapse, setCollapse }: HeaderProps) {
+export function Header({ collapse, setCollapse }: HeaderProps) {
+  const tokens = useTokens();
+  const { title } = useAppContext();
   const { toggleColorMode, colorMode } = useColorMode();
   return (
-    <Flex gap={1} pb={4} borderColor="gray.600" borderBottomWidth={1}>
-      <IconButton
-        variant={"solid"}
-        fontSize={"20px"}
-        icon={<MdMenu />}
-        aria-label="Menu"
-        onClick={() => setCollapse(!collapse)}
-      />
-      <IconButton
-        variant={"solid"}
-        fontSize={"20px"}
-        icon={colorMode === "light" ? <MdOutlineWbSunny /> : <MdBrightness2 />}
-        aria-label="Menu"
-        onClick={toggleColorMode}
-      />
-      <Heading ml={4}>{titulo}</Heading>
+    <Flex
+      pl={6}
+      pr={6}
+      h={"full"}
+      w={"full"}
+      alignItems={"center"}
+      justifyContent={"space-between"}
+      bg={tokens.headerBg}
+    >
+      <Flex gap={1}>
+        <IconButton
+          variant={"solid"}
+          fontSize={"20px"}
+          icon={<MdMenu />}
+          aria-label="Menu"
+          onClick={() => setCollapse(!collapse)}
+          bgColor={tokens.headerBtnBg}
+          color={tokens.headerBtnIcon}
+          _hover={{
+            color: tokens.headerBtnIconHover,
+            bgColor: tokens.headerBtnBgHover,
+          }}
+        />
+        <IconButton
+          variant={"solid"}
+          fontSize={"20px"}
+          icon={
+            colorMode === "light" ? <MdOutlineWbSunny /> : <MdBrightness2 />
+          }
+          aria-label="Menu"
+          onClick={toggleColorMode}
+          bgColor={tokens.headerBtnBg}
+          color={tokens.headerBtnIcon}
+          _hover={{
+            color: tokens.headerBtnIconHover,
+            bgColor: tokens.headerBtnBgHover,
+          }}
+        />
+        <Heading ml={4} color={"gray.600"} fontFamily={"Inter Tight"}>
+          {title}
+        </Heading>
+      </Flex>
+      <Flex gap={2} alignItems={"center"} justifyContent={"space-between"}>
+        <Flex
+          gap={4}
+          flexDir={"column"}
+          alignItems={"flex-end"}
+          justifyContent={"center"}
+        >
+          <Text
+            fontSize="sm"
+            color="gray.900"
+            pb="0"
+            lineHeight={0}
+            fontFamily={"Inter Tight"}
+          >
+            Kleiser Nairobi
+          </Text>
+          <Text
+            as={"small"}
+            color="gray.500"
+            fontSize={13}
+            lineHeight={0}
+            fontFamily={"Inter Tight"}
+          >
+            kleiser.nairobi@gmail.com
+          </Text>
+        </Flex>
+        <Avatar
+          name="Kleiser Nairobi"
+          color={"white"}
+          bg={tokens.headerAvatarBg}
+        />
+      </Flex>
     </Flex>
   );
 }

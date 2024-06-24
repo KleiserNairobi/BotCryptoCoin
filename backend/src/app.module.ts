@@ -1,10 +1,36 @@
 import {Module} from '@nestjs/common';
-import {AppController} from './app.controller';
-import {AppService} from './app.service';
+import {ConfigModule, ConfigService} from '@nestjs/config';
+import {TypeOrmModule} from '@nestjs/typeorm';
+import {UsersModule} from './users/users.module';
+import {AuthModule} from './auth/auth.module';
+import {TokenModule} from './token/token.module';
+import {BinanceModule} from './binance/binance.module';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    ConfigModule.forRoot({isGlobal: true}),
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: async (configService: ConfigService) => ({
+        type: 'postgres',
+        host: configService.get<string>('DB_HOST'),
+        port: configService.get<number>('DB_PORT'),
+        username: configService.get<string>('DB_USERNAME'),
+        password: configService.get<string>('DB_PASSWORD'),
+        database: configService.get<string>('DB_DATABASE'),
+        autoLoadEntities: true,
+        synchronize: true,
+        logging: false,
+        entities: [__dirname + '/**/*.entity{.js,.ts}'],
+      }),
+    }),
+    UsersModule,
+    AuthModule,
+    TokenModule,
+    BinanceModule,
+  ],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}

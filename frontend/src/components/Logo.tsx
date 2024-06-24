@@ -1,38 +1,52 @@
 import { Box, Flex, Icon, Text } from "@chakra-ui/react";
 import { SiBitcoinsv } from "react-icons/si";
+import { useTokens } from "../styles/tokens";
 
 type LogoProps = {
   collapse: boolean;
 };
 
 export function Logo({ collapse }: LogoProps) {
+  const tokens = useTokens();
   return (
     <Flex
-      pb={collapse ? 4 : 6}
       w={"full"}
-      mt={collapse ? 0 : 2}
+      bg={tokens.headerBg}
       alignItems={"center"}
       justifyContent={"space-between"}
       flexDir={collapse ? "row" : "column"}
-      borderColor="gray.600"
       borderBottomWidth={1}
     >
-      <Box display={"flex"} alignItems={"center"} gap={2}>
-        <Icon as={SiBitcoinsv} fontSize={30} />
+      <Box
+        gap={2}
+        h={"full"}
+        w={"full"}
+        display={"flex"}
+        alignItems={"center"}
+        justifyContent={"center"}
+      >
+        <Icon as={SiBitcoinsv} fontSize={42} color={"gray.700"} />
         {collapse && (
           <Box>
             <Text
-              fontSize={"3xl"}
+              color={"gray.700"}
+              fontSize={"2.5rem"}
               fontWeight={"bold"}
               letterSpacing={"tight"}
-              w={64}
+              fontFamily={"Inter Tight"}
             >
               Nairobi
-              <Text as={"span"} ml={1} color={"pink.500"}>
+              <Text as={"span"} ml={1} fontFamily={"Inter Tight"}>
                 .
               </Text>
-              <Text as={"span"} fontSize={"md"} ml={1} color={"pink.500"}>
-                Bot Crypto Coin
+              <Text
+                as={"span"}
+                fontSize={"md"}
+                ml={1}
+                fontFamily={"Inter Tight"}
+                fontWeight={"400"}
+              >
+                Bot
               </Text>
             </Text>
           </Box>
