@@ -6,49 +6,49 @@ import {
   InputGroup,
   InputLeftElement,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { forwardRef, useState } from "react";
 import { useTokens } from "../../styles/tokens";
 
 interface InputProps extends ChakraInputProps {
-  name: string;
   label?: string;
   icon?: React.ElementType;
 }
 
-export function Input({ name, label, icon: Icon, ...rest }: InputProps) {
-  const tokens = useTokens();
-  const [isFocused, setIsFocused] = useState(false);
-  const iconColor = isFocused ? "#84b969" : "#bad5a8";
+export const Input = forwardRef<HTMLInputElement, InputProps>(
+  ({ label, icon: Icon, ...rest }, ref) => {
+    const tokens = useTokens();
+    const [isFocused, setIsFocused] = useState(false);
+    const iconColor = isFocused ? "#84b969" : "#bad5a8";
 
-  return (
-    <FormControl>
-      {!!label && (
-        <FormLabel
-          mb={1}
-          htmlFor={name}
-          fontFamily={"Inter Tight"}
-          fontWeight={400}
-        >
-          {label}
-        </FormLabel>
-      )}
-      <InputGroup size={"md"}>
-        {Icon && (
-          <InputLeftElement>
-            <Icon color={iconColor} size={22} />
-          </InputLeftElement>
+    return (
+      <FormControl>
+        {!!label && (
+          <FormLabel
+            mb={1}
+            htmlFor={rest.id}
+            fontFamily={"Inter Tight"}
+            fontWeight={400}
+          >
+            {label}
+          </FormLabel>
         )}
-        <ChakraInput
-          id={name}
-          name={name}
-          variant={"outline"}
-          bgColor={tokens.bgMain}
-          focusBorderColor={"#84b969"}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
-          {...rest}
-        />
-      </InputGroup>
-    </FormControl>
-  );
-}
+        <InputGroup size={"md"}>
+          {Icon && (
+            <InputLeftElement>
+              <Icon color={iconColor} size={22} />
+            </InputLeftElement>
+          )}
+          <ChakraInput
+            variant={"outline"}
+            bgColor={tokens.bgMain}
+            focusBorderColor={"#84b969"}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
+            ref={ref}
+            {...rest}
+          />
+        </InputGroup>
+      </FormControl>
+    );
+  }
+);

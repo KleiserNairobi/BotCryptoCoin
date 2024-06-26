@@ -6,7 +6,6 @@ import {
   Text,
   Image,
   Box,
-  IconButton,
   useColorMode,
 } from "@chakra-ui/react";
 import {
@@ -15,21 +14,55 @@ import {
   MdMailOutline,
   MdOutlineWbSunny,
 } from "react-icons/md";
+import { useForm } from "react-hook-form";
 import { Input } from "../components/Form/Input";
 import { useTokens } from "../styles/tokens";
 import { TbUser } from "react-icons/tb";
 import { NButton } from "../components/Form/NButton";
 import { NIconButton } from "../components/Form/NIconButton";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { loginSchema, registerSchema } from "../utils/Validations";
+
+type DadosLogin = {
+  email: string;
+  password: string;
+};
+
+type DadosRegistro = {
+  cadUsername: string;
+  cadEmail: string;
+  cadPassword: string;
+  cadConfPassword: string;
+};
 
 export default function Login() {
   const tokens = useTokens();
   const [login, setLogin] = useState(true);
-  const [email, setEmail] = useState("");
   const { toggleColorMode, colorMode } = useColorMode();
 
-  // function toggleLogin() {
-  //   setLogin(!login);
-  // }
+  const loginForm = useForm<DadosLogin>({ resolver: yupResolver(loginSchema) });
+  const registerForm = useForm<DadosRegistro>({
+    resolver: yupResolver(registerSchema),
+  });
+
+  function toggleLoginRegister() {
+    setLogin((prevLogin) => {
+      if (prevLogin) {
+        registerForm.reset();
+      } else {
+        loginForm.reset();
+      }
+      return !prevLogin;
+    });
+  }
+
+  function onSubmitLogin(data: DadosLogin) {
+    console.log("dados: ", data);
+  }
+
+  function onSubmitRegister(data: DadosRegistro) {
+    console.log("dados: ", data);
+  }
 
   return (
     <Flex
@@ -110,28 +143,33 @@ export default function Login() {
                 ml={2}
                 size={"md"}
                 title="Registrar"
-                onClick={() => setLogin(!login)}
+                onClick={toggleLoginRegister}
               />
             </Box>
             <Heading>Login</Heading>
             <Text>Digite seu e-mail e senha para entrar!</Text>
-            <Stack mt={10} spacing={4}>
-              <Input
-                name="loginEmail"
-                type="email"
-                label="E-Mail *"
-                icon={MdMailOutline}
-                value={email}
-                onChange={(evt) => setEmail(evt.target.value)}
-              />
-              <Input
-                name="loginPassword"
-                type="password"
-                label="Senha *"
-                icon={MdLockOutline}
-              />
-            </Stack>
-            <NButton mt={16} size={"lg"} type="submit" title="Entrar" />
+            <form onSubmit={loginForm.handleSubmit(onSubmitLogin)}>
+              <Stack mt={10} spacing={4}>
+                <Input
+                  type="email"
+                  label="E-Mail *"
+                  icon={MdMailOutline}
+                  {...loginForm.register("email")}
+                />
+                {loginForm.formState.errors.email && (
+                  <Text color="red.500">
+                    {loginForm.formState.errors.email.message}
+                  </Text>
+                )}
+                <Input
+                  type="password"
+                  label="Senha *"
+                  icon={MdLockOutline}
+                  {...loginForm.register("password")}
+                />
+              </Stack>
+              <NButton mt={16} size={"lg"} type="submit" title="Entrar" />
+            </form>
           </Flex>
         ) : (
           <Flex w={"80%"} flexDirection={"column"}>
@@ -147,37 +185,39 @@ export default function Login() {
                 }
                 onClick={toggleColorMode}
               />
-              <NButton ml={2} title="Logar" onClick={() => setLogin(!login)} />
+              <NButton ml={2} title="Logar" onClick={toggleLoginRegister} />
             </Box>
             <Heading>Registrar-se</Heading>
             <Text>Informe os dados abaixo para se registrar!</Text>
-            <Stack mt={10} spacing={4}>
-              <Input
-                name="cadUsername"
-                type="text"
-                label="Nome *"
-                icon={TbUser}
-              />
-              <Input
-                name="cadEmail"
-                type="email"
-                label="E-Mail *"
-                icon={MdMailOutline}
-              />
-              <Input
-                name="cadPassword"
-                type="password"
-                label="Senha *"
-                icon={MdLockOutline}
-              />
-              <Input
-                name="cadConfPassword"
-                type="password"
-                label="Confirme a senha *"
-                icon={MdLockOutline}
-              />
-            </Stack>
-            <NButton mt={16} size={"lg"} type="submit" title="Confirmar" />
+            <form onSubmit={registerForm.handleSubmit(onSubmitRegister)}>
+              <Stack mt={10} spacing={4}>
+                <Input
+                  type="text"
+                  label="Nome *"
+                  icon={TbUser}
+                  {...registerForm.register("cadUsername")}
+                />
+                <Input
+                  type="email"
+                  label="E-Mail *"
+                  icon={MdMailOutline}
+                  {...registerForm.register("cadEmail")}
+                />
+                <Input
+                  type="password"
+                  label="Senha *"
+                  icon={MdLockOutline}
+                  {...registerForm.register("cadPassword")}
+                />
+                <Input
+                  type="password"
+                  label="Confirme a senha *"
+                  icon={MdLockOutline}
+                  {...registerForm.register("cadConfPassword")}
+                />
+              </Stack>
+              <NButton mt={16} size={"lg"} type="submit" title="Confirmar" />
+            </form>
           </Flex>
         )}
       </Flex>
