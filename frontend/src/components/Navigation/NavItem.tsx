@@ -47,14 +47,14 @@ export function NavItem({ item, collapse, isActive, onClick }: NavItemProps) {
           borderRadius="md"
           fontWeight={isActive ? "medium" : "normal"}
           color={isActive ? "gray.800" : "gray.600"}
-          bgColor={isActive ? "#eaefe8" : "transparent"}
+          bgColor={isActive ? "#bad5a8" : "transparent"}
           //borderLeftWidth="3px"
           //borderLeftColor={isActive ? "#537D3D" : "#F9FAF5"}
           _hover={{
             padding: "8px",
             textDecoration: "none",
             color: "gray.800",
-            bgColor: "#eaefe8",
+            bgColor: isActive ? "#bad5a8" : "#eaefe8",
             borderRadius: "md",
             fontWeight: "medium",
           }}
