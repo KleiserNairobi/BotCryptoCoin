@@ -40,6 +40,9 @@ export const theme = extendTheme({
     mainBtnBgHover: { light: "#D5E3C8", dark: "#37404E" },
     mainBtnIcon: { light: "#537D3D", dark: "#37404E" },
     mainBtnIconHover: { light: "gray.800", dark: "#37404E" },
+
+    mainBtnPrimaryBg: { light: "#BAD5A8", dark: "#37404E" },
+    mainBtnPrimaryBgHover: { light: "#84B969", dark: "#37404E" },
   },
 
   // "#537D3D"

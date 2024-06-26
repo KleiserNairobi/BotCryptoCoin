@@ -38,6 +38,16 @@ export function useTokens() {
     "mainBtnIconHover.dark"
   );
 
+  const mainBtnPrimaryBg = useColorModeValue(
+    "mainBtnPrimaryBg.light",
+    "mainBtnPrimaryBg.dark"
+  );
+
+  const mainBtnPrimaryBgHover = useColorModeValue(
+    "mainBtnPrimaryBgHover.light",
+    "mainBtnPrimaryBgHover.dark"
+  );
+
   return {
     bgDesktop,
     bgMain,
@@ -51,5 +61,7 @@ export function useTokens() {
     mainBtnBgHover,
     mainBtnIcon,
     mainBtnIconHover,
+    mainBtnPrimaryBg,
+    mainBtnPrimaryBgHover,
   };
 }
