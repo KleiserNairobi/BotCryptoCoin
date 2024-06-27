@@ -15,7 +15,6 @@ export function Logo({ collapse }: LogoProps) {
       alignItems={"center"}
       justifyContent={"space-between"}
       flexDir={collapse ? "row" : "column"}
-      borderBottomWidth={1}
     >
       <Box
         gap={2}

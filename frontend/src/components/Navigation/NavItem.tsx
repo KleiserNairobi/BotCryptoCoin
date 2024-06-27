@@ -46,22 +46,22 @@ export function NavItem({ item, collapse, isActive, onClick }: NavItemProps) {
           alignItems="center"
           borderRadius="md"
           fontWeight={isActive ? "medium" : "normal"}
-          color={isActive ? "gray.800" : "gray.600"}
-          bgColor={isActive ? "#bad5a8" : "transparent"}
+          color={isActive ? tokens.menuTitleActive : tokens.menuTitleInactive}
+          bgColor={isActive ? tokens.menuBgActive : tokens.menuBg}
           //borderLeftWidth="3px"
           //borderLeftColor={isActive ? "#537D3D" : "#F9FAF5"}
           _hover={{
             padding: "8px",
             textDecoration: "none",
-            color: "gray.800",
-            bgColor: isActive ? "#bad5a8" : "#eaefe8",
+            color: isActive ? tokens.menuTitleActive : tokens.menuTitleInactive,
+            bgColor: isActive ? tokens.menuBgHoverActive : tokens.menuBgHover,
             borderRadius: "md",
             fontWeight: "medium",
           }}
           onClick={onClick}
         >
           <HStack minH={6} alignItems={"center"}>
-            <ListIcon as={icon} fontSize={22} color={"#537D3D"} />
+            <ListIcon as={icon} fontSize={22} color={tokens.menuIcon} />
             {collapse && <Text>{label}</Text>}
           </HStack>
         </ChakraLink>
@@ -70,13 +70,7 @@ export function NavItem({ item, collapse, isActive, onClick }: NavItemProps) {
   }
 
   return (
-    <Heading
-      mb={2}
-      color={tokens.menuLabel}
-      fontWeight="medium"
-      textTransform="uppercase"
-      fontSize="sm"
-    >
+    <Heading mb={2} fontWeight="medium" textTransform="uppercase" fontSize="sm">
       <Text>{label}</Text>
     </Heading>
   );

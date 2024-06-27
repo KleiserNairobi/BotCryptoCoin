@@ -16,6 +16,7 @@ import {
 } from "@chakra-ui/react";
 import { useTokens } from "../styles/tokens";
 import { MdOutlineSync } from "react-icons/md";
+import { NButton } from "../components/Form/NButton";
 
 export function Simbolos() {
   const tokens = useTokens();
@@ -37,18 +38,11 @@ export function Simbolos() {
             justifyContent={"space-between"}
           >
             <Heading size={"md"}>Listagem de símbolos</Heading>
-            <Button
+            <NButton
               isLoading={false}
-              loadingText="Sincronizando"
-              bg={"#bad5a8"}
+              title="Sincronizando"
               leftIcon={<MdOutlineSync />}
-              _hover={{
-                color: "gray.800",
-                bgColor: "#84b969",
-              }}
-            >
-              Sincronizar
-            </Button>
+            />
           </HStack>
         </CardHeader>
         <CardBody overflowY={"hidden"} flex={1}>

@@ -40,9 +40,14 @@ export default function Login() {
   const [login, setLogin] = useState(true);
   const { toggleColorMode, colorMode } = useColorMode();
 
-  const loginForm = useForm<DadosLogin>({ resolver: yupResolver(loginSchema) });
+  const loginForm = useForm<DadosLogin>({
+    resolver: yupResolver(loginSchema),
+    mode: "onSubmit",
+  });
+
   const registerForm = useForm<DadosRegistro>({
     resolver: yupResolver(registerSchema),
+    mode: "onSubmit",
   });
 
   function toggleLoginRegister() {
@@ -155,17 +160,15 @@ export default function Login() {
                   label="E-Mail *"
                   icon={MdMailOutline}
                   {...loginForm.register("email")}
+                  error={loginForm.formState.errors.email?.message}
                 />
-                {loginForm.formState.errors.email && (
-                  <Text color="red.500">
-                    {loginForm.formState.errors.email.message}
-                  </Text>
-                )}
+
                 <Input
                   type="password"
                   label="Senha *"
                   icon={MdLockOutline}
                   {...loginForm.register("password")}
+                  error={loginForm.formState.errors.password?.message}
                 />
               </Stack>
               <NButton mt={16} size={"lg"} type="submit" title="Entrar" />
@@ -196,24 +199,28 @@ export default function Login() {
                   label="Nome *"
                   icon={TbUser}
                   {...registerForm.register("cadUsername")}
+                  error={registerForm.formState.errors.cadUsername?.message}
                 />
                 <Input
                   type="email"
                   label="E-Mail *"
                   icon={MdMailOutline}
                   {...registerForm.register("cadEmail")}
+                  error={registerForm.formState.errors.cadEmail?.message}
                 />
                 <Input
                   type="password"
                   label="Senha *"
                   icon={MdLockOutline}
                   {...registerForm.register("cadPassword")}
+                  error={registerForm.formState.errors.cadPassword?.message}
                 />
                 <Input
                   type="password"
                   label="Confirme a senha *"
                   icon={MdLockOutline}
                   {...registerForm.register("cadConfPassword")}
+                  error={registerForm.formState.errors.cadConfPassword?.message}
                 />
               </Stack>
               <NButton mt={16} size={"lg"} type="submit" title="Confirmar" />

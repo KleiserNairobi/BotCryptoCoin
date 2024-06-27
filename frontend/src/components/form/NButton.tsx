@@ -1,4 +1,4 @@
-import { Button, ButtonProps } from "@chakra-ui/react";
+import { Button, ButtonProps, useColorModeValue } from "@chakra-ui/react";
 import { useTokens } from "../../styles/tokens";
 
 interface NButtonProps extends ButtonProps {
@@ -8,11 +8,12 @@ interface NButtonProps extends ButtonProps {
 
 export function NButton({ title, onClick, ...rest }: NButtonProps) {
   const tokens = useTokens();
+  const color = useColorModeValue("gray.700", "gray.100");
   return (
     <Button
       bg={tokens.mainBtnPrimaryBg}
       _hover={{
-        color: "gray.800",
+        color: color,
         bgColor: tokens.mainBtnPrimaryBgHover,
       }}
       onClick={onClick}

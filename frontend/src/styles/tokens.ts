@@ -1,6 +1,9 @@
-import { useColorModeValue } from "@chakra-ui/react";
+import { useColorModeValue, useColorMode, useTheme } from "@chakra-ui/react";
 
 export function useTokens() {
+  const theme = useTheme();
+  const { colorMode } = useColorMode();
+
   const bgDesktop = useColorModeValue("bgDesktop.light", "bgDesktop.dark");
   const bgMain = useColorModeValue("bgMain.light", "bgMain.dark");
   const headerBg = useColorModeValue("headerBg.light", "headerBg.dark");
@@ -48,6 +51,30 @@ export function useTokens() {
     "mainBtnPrimaryBgHover.dark"
   );
 
+  const menuTitleActive =
+    colorMode === "light"
+      ? theme.colors.menuTitleActive.light
+      : theme.colors.menuTitleActive.dark;
+  const menuTitleInactive =
+    colorMode === "light"
+      ? theme.colors.menuTitleInactive.light
+      : theme.colors.menuTitleInactive.dark;
+
+  const menuBg = useColorModeValue("menuBg.light", "menuBg.dark");
+  const menuBgActive = useColorModeValue(
+    "menuBgActive.light",
+    "menuBgActive.dark"
+  );
+  const menuBgHover = useColorModeValue(
+    "menuBgHover.light",
+    "menuBgHover.dark"
+  );
+  const menuBgHoverActive = useColorModeValue(
+    "menuBgHoverActive.light",
+    "menuBgHoverActive.dark"
+  );
+  const menuIcon = useColorModeValue("menuIcon.light", "menuIcon.dark");
+
   return {
     bgDesktop,
     bgMain,
@@ -63,5 +90,12 @@ export function useTokens() {
     mainBtnIconHover,
     mainBtnPrimaryBg,
     mainBtnPrimaryBgHover,
+    menuTitleActive,
+    menuTitleInactive,
+    menuBg,
+    menuBgActive,
+    menuBgHover,
+    menuBgHoverActive,
+    menuIcon,
   };
 }
