@@ -24,11 +24,11 @@ export function Logo({ collapse }: LogoProps) {
         alignItems={"center"}
         justifyContent={"center"}
       >
-        <Icon as={SiBitcoinsv} fontSize={42} color={"gray.700"} />
+        <Icon as={SiBitcoinsv} fontSize={42} color={tokens.headerTitle} />
         {collapse && (
           <Box>
             <Text
-              color={"gray.700"}
+              color={tokens.headerTitle}
               fontSize={"2.5rem"}
               fontWeight={"bold"}
               letterSpacing={"tight"}
@@ -39,11 +39,12 @@ export function Logo({ collapse }: LogoProps) {
                 .
               </Text>
               <Text
+                ml={1}
                 as={"span"}
                 fontSize={"md"}
-                ml={1}
                 fontFamily={"Inter Tight"}
                 fontWeight={"400"}
+                color={tokens.headerSubtitle}
               >
                 Bot
               </Text>

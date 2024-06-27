@@ -24,7 +24,7 @@ export function Simbolos() {
     <Flex h={"100%"} w={"100%"} py={6} flexDir={"column"}>
       <Card
         bg={tokens.bgMain}
-        borderColor={"#C3D6B0"}
+        borderColor={tokens.mainBorder}
         borderWidth={1}
         mr={6}
         h={"100%"}
@@ -37,7 +37,14 @@ export function Simbolos() {
             mx={"auto"}
             justifyContent={"space-between"}
           >
-            <Heading size={"md"}>Listagem de símbolos</Heading>
+            <Heading
+              size={"md"}
+              fontFamily={"Inter Tight"}
+              fontWeight={500}
+              letterSpacing={"tight"}
+            >
+              Listagem de símbolos
+            </Heading>
             <NButton
               isLoading={false}
               title="Sincronizando"

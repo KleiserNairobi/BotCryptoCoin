@@ -41,7 +41,14 @@ export function Configuracoes() {
               mx={"auto"}
               justifyContent={"space-between"}
             >
-              <Heading size={"md"}>Usuário</Heading>
+              <Heading
+                size={"md"}
+                fontFamily={"Inter Tight"}
+                fontWeight={500}
+                letterSpacing={"tight"}
+              >
+                Usuário
+              </Heading>
               <Button
                 isLoading={false}
                 loadingText="Sincronizando"
@@ -89,7 +96,14 @@ export function Configuracoes() {
               mx={"auto"}
               justifyContent={"space-between"}
             >
-              <Heading size={"md"}>Exchange</Heading>
+              <Heading
+                size={"md"}
+                fontFamily={"Inter Tight"}
+                fontWeight={500}
+                letterSpacing={"tight"}
+              >
+                Exchange
+              </Heading>
               <Button
                 isLoading={false}
                 loadingText="Sincronizando"

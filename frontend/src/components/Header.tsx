@@ -59,7 +59,13 @@ export function Header({ collapse, setCollapse }: HeaderProps) {
             bgColor: tokens.headerBtnBgHover,
           }}
         />
-        <Heading ml={4} color={"gray.600"} fontFamily={"Inter Tight"}>
+        <Heading
+          ml={4}
+          color={tokens.headerTitle}
+          fontFamily={"Inter Tight"}
+          fontWeight={500}
+          letterSpacing={"tight"}
+        >
           {title}
         </Heading>
       </Flex>
@@ -72,7 +78,7 @@ export function Header({ collapse, setCollapse }: HeaderProps) {
         >
           <Text
             fontSize="sm"
-            color="gray.900"
+            color={tokens.headerTitle}
             pb="0"
             lineHeight={0}
             fontFamily={"Inter Tight"}
@@ -81,7 +87,7 @@ export function Header({ collapse, setCollapse }: HeaderProps) {
           </Text>
           <Text
             as={"small"}
-            color="gray.500"
+            color={tokens.headerSubtitle}
             fontSize={13}
             lineHeight={0}
             fontFamily={"Inter Tight"}
