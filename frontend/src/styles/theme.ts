@@ -41,6 +41,10 @@ export const theme = extendTheme({
     menuTitleActive: { light: "gray.800", dark: "gray.200" },
     menuTitleInactive: { light: "gray.600", dark: "gray.400" },
 
+    inputIcon: { light: "#BAD5A8", dark: "#6A6E7A" },
+    inputIconFocus: { light: "#84B969", dark: "#84B969" },
+    inputError: { light: "red.500", dark: "red.300" },
+
     // mainBtnPrimaryBg: { light: "#BAD5A8", dark: "#4C505B" },
     // mainBtnPrimaryBgHover: { light: "#84B969", dark: "#565A65" },
   },

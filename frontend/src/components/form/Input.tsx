@@ -21,19 +21,14 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ label, error, icon: Icon, ...rest }, ref) => {
     const tokens = useTokens();
     const [isFocused, setIsFocused] = useState(false);
-    const iconColor = isFocused ? "#84b969" : "#bad5a8";
 
     const errorMessage = typeof error === "string" ? error : error?.message;
+    const iconColor = isFocused ? tokens.inputIconFocus : tokens.inputIcon;
 
     return (
       <FormControl isInvalid={!!errorMessage}>
         {!!label && (
-          <FormLabel
-            mb={1}
-            htmlFor={rest.id}
-            fontFamily={"Inter Tight"}
-            fontWeight={400}
-          >
+          <FormLabel mb={1} htmlFor={rest.id} fontWeight={400}>
             {label}
           </FormLabel>
         )}
@@ -46,14 +41,20 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           <ChakraInput
             variant={"outline"}
             bgColor={tokens.bgMain}
-            focusBorderColor={errorMessage ? "red.500" : "#84b969"}
+            focusBorderColor={
+              errorMessage ? tokens.inputError : tokens.inputIconFocus
+            }
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
             ref={ref}
             {...rest}
           />
         </InputGroup>
-        {errorMessage && <FormErrorMessage>{errorMessage}</FormErrorMessage>}
+        {errorMessage && (
+          <FormErrorMessage color={tokens.inputError}>
+            {errorMessage}
+          </FormErrorMessage>
+        )}
       </FormControl>
     );
   }

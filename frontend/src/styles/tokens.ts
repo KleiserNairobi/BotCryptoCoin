@@ -55,6 +55,7 @@ export function useTokens() {
     colorMode === "light"
       ? theme.colors.menuTitleActive.light
       : theme.colors.menuTitleActive.dark;
+
   const menuTitleInactive =
     colorMode === "light"
       ? theme.colors.menuTitleInactive.light
@@ -86,6 +87,21 @@ export function useTokens() {
 
   const mainBorder = useColorModeValue("mainBorder.light", "mainBorder.dark");
 
+  const inputIcon =
+    colorMode === "light"
+      ? theme.colors.inputIcon.light
+      : theme.colors.inputIcon.dark;
+
+  const inputIconFocus =
+    colorMode === "light"
+      ? theme.colors.inputIconFocus.light
+      : theme.colors.inputIconFocus.dark;
+
+  const inputError =
+    colorMode === "light"
+      ? theme.colors.inputError.light
+      : theme.colors.inputError.dark;
+
   return {
     bgDesktop,
     bgMain,
@@ -111,5 +127,8 @@ export function useTokens() {
     menuBgHover,
     menuBgHoverActive,
     menuIcon,
+    inputIcon,
+    inputIconFocus,
+    inputError,
   };
 }
