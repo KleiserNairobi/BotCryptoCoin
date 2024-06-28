@@ -47,18 +47,14 @@ export function Simbolos() {
             </Heading>
             <NButton
               isLoading={false}
-              title="Sincronizando"
+              title="Sincronizar"
+              loadingText="Sincronizando"
               leftIcon={<MdOutlineSync />}
             />
           </HStack>
         </CardHeader>
         <CardBody overflowY={"hidden"} flex={1}>
-          <TableContainer
-            overflowY="auto"
-            //position="relative"
-            //w={"100%"}
-            h={"100%"}
-          >
+          <TableContainer overflowY="auto" h={"100%"}>
             <Table size="sm">
               <Thead
                 top={0}

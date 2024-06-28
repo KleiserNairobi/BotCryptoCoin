@@ -21,14 +21,17 @@ import {
 import { Input } from "../components/Form/Input";
 import { MdLockOutline, MdMailOutline } from "react-icons/md";
 import { TbUser } from "react-icons/tb";
+import { useTokens } from "../styles/tokens";
+import { NButton } from "../components/Form/NButton";
 
 export function Configuracoes() {
+  const tokens = useTokens();
   return (
     <Flex direction={"column"} mr={6} mt={6}>
       <SimpleGrid columns={2} spacing={5}>
         <Card
-          bg={"#F9FAF5"}
-          borderColor={"#C3D6B0"}
+          bg={tokens.bgMain}
+          borderColor={tokens.mainBorder}
           borderWidth={1}
           overflow={"hidden"}
           w={"100%"}
@@ -49,17 +52,7 @@ export function Configuracoes() {
               >
                 Usuário
               </Heading>
-              <Button
-                isLoading={false}
-                loadingText="Sincronizando"
-                bg={"#bad5a8"}
-                _hover={{
-                  color: "gray.800",
-                  bgColor: "#84b969",
-                }}
-              >
-                Salvar
-              </Button>
+              <NButton title="Salvar" />
             </HStack>
           </CardHeader>
           <CardBody mb={6}>
@@ -82,8 +75,8 @@ export function Configuracoes() {
         </Card>
 
         <Card
-          bg={"#F9FAF5"}
-          borderColor={"#C3D6B0"}
+          bg={tokens.bgMain}
+          borderColor={tokens.mainBorder}
           borderWidth={1}
           overflow={"hidden"}
           w={"100%"}
@@ -104,17 +97,7 @@ export function Configuracoes() {
               >
                 Exchange
               </Heading>
-              <Button
-                isLoading={false}
-                loadingText="Sincronizando"
-                bg={"#bad5a8"}
-                _hover={{
-                  color: "gray.800",
-                  bgColor: "#84b969",
-                }}
-              >
-                Salvar
-              </Button>
+              <NButton title="Salvar" />
             </HStack>
           </CardHeader>
           <CardBody mb={6}>

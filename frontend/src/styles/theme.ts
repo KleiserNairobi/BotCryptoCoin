@@ -15,29 +15,34 @@ export const theme = extendTheme({
   colors: {
     bgDesktop: { light: "#C3D6B0", dark: "#181818" },
     bgMain: { light: "#F9FAF5", dark: "#252A36" },
+
     headerBg: { light: "#E8EFE2", dark: "#191E26" },
     headerBtnBg: { light: "#F9FAF3", dark: "#2E323D" },
     headerBtnBgHover: { light: "#D5E3C8", dark: "#424651" },
     headerBtnIcon: { light: "#537D3D", dark: "#9DA0A6" },
     headerBtnIconHover: { light: "gray.800", dark: "gray.100" },
-    headerAvatarBg: { light: "#6B9A52", dark: "#424651" },
+    headerAvatarBg: { light: "#6B9A52", dark: "#6B9A52" },
     headerTitle: { light: "gray.800", dark: "gray.100" },
     headerSubtitle: { light: "gray.600", dark: "gray.400" },
+
     mainBtnBg: { light: "#EAEEE4", dark: "#1A2029" },
     mainBtnBgHover: { light: "#D5E3C8", dark: "#181818" },
     mainBtnIcon: { light: "#537D3D", dark: "#B8BBBF" },
     mainBtnIconHover: { light: "gray.800", dark: "gray.100" },
-    mainBtnPrimaryBg: { light: "#BAD5A8", dark: "#4C505B" },
-    mainBtnPrimaryBgHover: { light: "#84B969", dark: "#565A65" },
+    mainBtnPrimaryBg: { light: "#BAD5A8", dark: "#537D3D" },
+    mainBtnPrimaryBgHover: { light: "#84B969", dark: "#6B9A52" },
     mainBorder: { light: "#C3D6B0", dark: "#181818" },
 
     menuBg: { light: "transparent", dark: "transparent" },
     menuBgActive: { light: "#BAD5A8", dark: "#424651" },
     menuBgHover: { light: "#EAEFE8", dark: "#2E323D" },
     menuBgHoverActive: { light: "#BAD5A8", dark: "#424651" },
-    menuIcon: { light: "#537D3D", dark: "#BCBFC3" },
+    menuIcon: { light: "#537D3D", dark: "#537D3D" },
     menuTitleActive: { light: "gray.800", dark: "gray.200" },
     menuTitleInactive: { light: "gray.600", dark: "gray.400" },
+
+    // mainBtnPrimaryBg: { light: "#BAD5A8", dark: "#4C505B" },
+    // mainBtnPrimaryBgHover: { light: "#84B969", dark: "#565A65" },
   },
 
   // "#537D3D" "#BEC2C6" headerBtnIcon / mainBtnIcon
