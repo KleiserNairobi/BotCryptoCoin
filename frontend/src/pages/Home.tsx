@@ -6,7 +6,7 @@ import { Header } from "../components/Header";
 import { Outlet, useLocation } from "react-router-dom";
 import { useAppContext } from "../contexts/AppContext";
 
-export default function Home() {
+export function Home() {
   const tokens = useTokens();
   const location = useLocation();
   const { setTitle } = useAppContext();

@@ -35,7 +35,7 @@ type DadosRegistro = {
   cadConfPassword: string;
 };
 
-export default function Login() {
+export function Login() {
   const tokens = useTokens();
   const [login, setLogin] = useState(true);
   const { toggleColorMode, colorMode } = useColorMode();

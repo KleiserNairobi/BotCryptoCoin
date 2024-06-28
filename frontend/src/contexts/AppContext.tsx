@@ -1,4 +1,6 @@
 import { ReactNode, createContext, useContext, useState } from "react";
+import { ILogin } from "../models/LoginModel";
+import { logar } from "../services/LoginService";
 
 type User = {
   id: string;
@@ -11,6 +13,8 @@ type AppContextType = {
   setTitle: (title: string) => void;
   user: User | null;
   setUser: (user: User | null) => void;
+  login: (data: ILogin) => Promise<void>;
+  logout: () => void;
 };
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -19,8 +23,23 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   const [title, setTitle] = useState("Home");
   const [user, setUser] = useState<User | null>(null);
 
+  async function login(data: ILogin) {
+    try {
+      const response = await logar(data);
+      setUser(response.data.user);
+    } catch (error) {
+      console.error("Falha ao logar", error);
+    }
+  }
+
+  function logout() {
+    setUser(null);
+  }
+
   return (
-    <AppContext.Provider value={{ title, setTitle, user, setUser }}>
+    <AppContext.Provider
+      value={{ title, setTitle, user, setUser, login, logout }}
+    >
       {children}
     </AppContext.Provider>
   );

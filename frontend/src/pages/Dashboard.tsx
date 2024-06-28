@@ -20,7 +20,7 @@ import { CandleChart } from "./CandleChart";
 import { MdFirstPage, MdLastPage } from "react-icons/md";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 
-export default function Dashboard() {
+export function Dashboard() {
   return (
     <Flex direction={"column"} mr={6}>
       <Flex w={"100%"} h={"500px"}>
