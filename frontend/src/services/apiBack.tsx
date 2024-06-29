@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = process.env.REACT_APP_BACK_URL;
+const url = import.meta.env.VITE_URL_DEV;
 
 const apiBack = axios.create({
   baseURL: url,
