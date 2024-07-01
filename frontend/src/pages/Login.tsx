@@ -22,6 +22,7 @@ import { NButton } from "../components/Form/NButton";
 import { NIconButton } from "../components/Form/NIconButton";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema, registerSchema } from "../utils/Validations";
+import { logar } from "../services/LoginService";
 
 type DadosLogin = {
   email: string;
@@ -61,8 +62,16 @@ export function Login() {
     });
   }
 
-  function onSubmitLogin(data: DadosLogin) {
+  async function onSubmitLogin(data: DadosLogin) {
     console.log("dados: ", data);
+    try {
+      const resposta = await logar(data);
+      if (resposta) {
+        console.log("login realizado");
+      }
+    } catch (erro) {
+      console.error(erro);
+    }
   }
 
   function onSubmitRegister(data: DadosRegistro) {
@@ -87,17 +96,17 @@ export function Login() {
       >
         <Flex
           w={"100%"}
-          h={"80vh"}
-          mt={36}
+          h={"100%"}
           alignItems={"center"}
+          justifyContent={"center"}
           flexDirection={"column"}
         >
           <Image
             objectFit={"cover"}
             src="./src/assets/images/ImgCrypto.png"
             alt="imagem crypto moeda"
-            w={"80vh"}
-            h={"40vw"}
+            w={"40vw"}
+            h={"auto"}
           />
           <Flex
             w={"full"}

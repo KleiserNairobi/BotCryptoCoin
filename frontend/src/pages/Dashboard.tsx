@@ -19,11 +19,20 @@ import {
 import { CandleChart } from "./CandleChart";
 import { MdFirstPage, MdLastPage } from "react-icons/md";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
+import { useTokens } from "../styles/tokens";
 
 export function Dashboard() {
+  const tokens = useTokens();
   return (
-    <Flex direction={"column"} mr={6}>
-      <Flex w={"100%"} h={"500px"}>
+    <Flex direction={"column"} mt={5} mr={6}>
+      <Flex
+        w={"100%"}
+        h={"500px"}
+        bg={tokens.bgMain}
+        borderWidth={1}
+        borderRadius={10}
+        borderColor={tokens.mainBorder}
+      >
         <CandleChart simbolo="BTCUSDT" />
       </Flex>
       <Flex w={"100%"} mt={6} mb={6}>

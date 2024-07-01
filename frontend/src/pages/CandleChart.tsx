@@ -1,5 +1,6 @@
-import { Flex } from "@chakra-ui/react";
 import { useEffect, useMemo, useRef } from "react";
+import { Flex, useColorMode } from "@chakra-ui/react";
+//import { useTokens } from "../styles/tokens";
 
 type CandleChartProps = {
   simbolo: string;
@@ -7,14 +8,17 @@ type CandleChartProps = {
 
 export function CandleChart({ simbolo = "BTCUSDT" }: CandleChartProps) {
   const container = useRef<HTMLDivElement>(null);
-  //const url = process.env.REACT_APP_TRDVIEW_URL;
+  const { colorMode } = useColorMode();
+  //const tokens = useTokens();
+  //const corTema = colorMode === "light" ? "light" : "dark";
+  const URL_TRADINGVIEW = import.meta.env.VITE_URL_TRADINGVIEW;
+
   useEffect(() => {
     console.log(simbolo);
     if (container.current) {
       container.current.innerHTML = "";
       const script = document.createElement("script");
-      script.src =
-        "https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js";
+      script.src = URL_TRADINGVIEW;
       script.type = "text/javascript";
       script.async = true;
       script.innerHTML = `
@@ -25,15 +29,23 @@ export function CandleChart({ simbolo = "BTCUSDT" }: CandleChartProps) {
         "style": "1",
         "symbol": "BINANCE:${simbolo}",
         "timezone": "America/Sao_Paulo",
-        "theme": "light",
+        "theme": "${colorMode === "light" ? "light" : "dark"}",
+        "backgroundColor": "${
+          colorMode === "light"
+            ? "rgba(249, 250, 245, 1)"
+            : "rgba(37, 42, 54, 1)"
+        }",
         "allow_symbol_change": false,
         "details": true,
-        "withdateranges": true,
+        "withdateranges": false,
         "range": "YTD",
+        "hide_top_toolbar": true,
         "hide_side_toolbar": true,
-        "details": true,
+        "details": false,
         "hotlist": false,
         "hide_volume": false,
+        "hide_legend": true,
+        "save_image": false,
         "studies": [
           "MASimple@tv-basicstudies"
         ],
@@ -41,11 +53,11 @@ export function CandleChart({ simbolo = "BTCUSDT" }: CandleChartProps) {
       }`;
       container.current.appendChild(script);
     }
-  }, [simbolo]);
+  }, [URL_TRADINGVIEW, colorMode, simbolo]);
 
   const candleContainer = useMemo(
     () => (
-      <Flex w={"100%"} borderRadius={10} p={3} bg={"White"} mt={5}>
+      <Flex p={3} w={"100%"}>
         <div
           ref={container}
           className="tradingview-widget-container"
