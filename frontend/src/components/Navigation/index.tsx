@@ -8,8 +8,10 @@ import {
 import { AiOutlineDashboard } from "react-icons/ai";
 import { NavItem } from "./NavItem";
 import { useState } from "react";
-import { FiUser } from "react-icons/fi";
+//import { FiUser } from "react-icons/fi";
 import { ImCoinDollar } from "react-icons/im";
+import { useAppContext } from "../../contexts/AppContext";
+import { useNavigate } from "react-router-dom";
 
 type NavigationProps = {
   collapse: boolean;
@@ -66,15 +68,21 @@ const items = [
     type: "link",
     label: "Sair",
     icon: MdOutlineExitToApp,
-    path: "/sair",
+    path: "/login",
     title: "Sair",
   },
 ];
 
 export function Navigation({ collapse }: NavigationProps) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const { logout } = useAppContext();
+  const navigate = useNavigate();
 
   const handleItemClick = (index: number) => {
+    if (items[index].label === "Sair") {
+      logout();
+      navigate("/login");
+    }
     setActiveIndex(index);
   };
   return (

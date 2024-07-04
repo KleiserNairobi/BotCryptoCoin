@@ -7,6 +7,7 @@ import {
   Image,
   Box,
   useColorMode,
+  useToast,
 } from "@chakra-ui/react";
 import {
   MdBrightness2,
@@ -22,7 +23,8 @@ import { NButton } from "../components/Form/NButton";
 import { NIconButton } from "../components/Form/NIconButton";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema, registerSchema } from "../utils/Validations";
-import { logar } from "../services/LoginService";
+import { useAppContext } from "../contexts/AppContext";
+import { useNavigate } from "react-router-dom";
 
 type DadosLogin = {
   email: string;
@@ -38,7 +40,10 @@ type DadosRegistro = {
 
 export function Login() {
   const tokens = useTokens();
-  const [login, setLogin] = useState(true);
+  const navigate = useNavigate();
+  const toast = useToast();
+  const { login } = useAppContext();
+  const [logar, setLogar] = useState(true);
   const { toggleColorMode, colorMode } = useColorMode();
 
   const loginForm = useForm<DadosLogin>({
@@ -52,7 +57,7 @@ export function Login() {
   });
 
   function toggleLoginRegister() {
-    setLogin((prevLogin) => {
+    setLogar((prevLogin) => {
       if (prevLogin) {
         registerForm.reset();
       } else {
@@ -63,14 +68,28 @@ export function Login() {
   }
 
   async function onSubmitLogin(data: DadosLogin) {
-    console.log("dados: ", data);
     try {
-      const resposta = await logar(data);
-      if (resposta) {
-        console.log("login realizado");
+      const logou = await login(data);
+      if (logou) {
+        navigate("/dashboard");
+      } else {
+        toast({
+          title: "Não autorizado!",
+          description: "Email ou senha inválidos.",
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+        });
       }
     } catch (erro) {
-      console.error(erro);
+      toast({
+        title: "Falha no login!",
+        description:
+          "Houve um problema na tentativa de login. Tente novamente mais tarde.",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
     }
   }
 
@@ -139,7 +158,7 @@ export function Login() {
         alignItems={"center"}
         justifyContent={"center"}
       >
-        {login ? (
+        {logar ? (
           <Flex w={"80%"} flexDirection={"column"}>
             <Box mb={50} flexDir={"row"}>
               <NIconButton

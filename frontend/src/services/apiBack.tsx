@@ -9,4 +9,10 @@ const apiBack = axios.create({
 
 apiBack.defaults.headers.common["Content-Type"] = "application/json";
 
+const token = localStorage.getItem("token");
+
+if (token) {
+  apiBack.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+}
+
 export default apiBack;

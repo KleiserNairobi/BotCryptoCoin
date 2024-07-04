@@ -1,6 +1,7 @@
 import { ReactNode, createContext, useContext, useState } from "react";
 import { ILogin } from "../models/LoginModel";
-import { logar } from "../services/LoginService";
+import { autenticar } from "../services/LoginService";
+import apiBack from "../services/apiBack";
 
 type User = {
   id: string;
@@ -13,7 +14,7 @@ type AppContextType = {
   setTitle: (title: string) => void;
   user: User | null;
   setUser: (user: User | null) => void;
-  login: (data: ILogin) => Promise<void>;
+  login: (data: ILogin) => Promise<boolean>;
   logout: () => void;
 };
 
@@ -23,17 +24,28 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   const [title, setTitle] = useState("Home");
   const [user, setUser] = useState<User | null>(null);
 
-  async function login(data: ILogin) {
+  async function login(data: ILogin): Promise<boolean> {
     try {
-      const response = await logar(data);
-      setUser(response.data.user);
+      const response = await autenticar(data);
+      if (response.data) {
+        setUser(response.data);
+        localStorage.setItem("token", response.data.token);
+        apiBack.defaults.headers.common[
+          "Authorization"
+        ] = `Bearer ${response.data.token}`;
+        return true;
+      } else {
+        return false;
+      }
     } catch (error) {
-      console.error("Falha ao logar", error);
+      return false;
     }
   }
 
   function logout() {
     setUser(null);
+    localStorage.removeItem("token");
+    delete apiBack.defaults.headers.common["Authorization"];
   }
 
   return (
