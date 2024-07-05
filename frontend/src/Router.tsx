@@ -12,8 +12,6 @@ import { Ordens } from "./pages/Ordens";
 export function Router() {
   const { user } = useAppContext();
 
-  console.log(user);
-
   function logar() {
     return (
       <BrowserRouter>

@@ -14,7 +14,6 @@ export function CandleChart({ simbolo = "BTCUSDT" }: CandleChartProps) {
   const URL_TRADINGVIEW = import.meta.env.VITE_URL_TRADINGVIEW;
 
   useEffect(() => {
-    console.log(simbolo);
     if (container.current) {
       container.current.innerHTML = "";
       const script = document.createElement("script");

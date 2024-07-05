@@ -44,6 +44,7 @@ export function Login() {
   const toast = useToast();
   const { login } = useAppContext();
   const [logar, setLogar] = useState(true);
+  const [loading, setLoading] = useState(false);
   const { toggleColorMode, colorMode } = useColorMode();
 
   const loginForm = useForm<DadosLogin>({
@@ -67,29 +68,37 @@ export function Login() {
     });
   }
 
+  function exibeErroDesconhecido() {
+    return toast({
+      title: "Erro desconhecido!",
+      description: "Ocorreu um erro inesperado. Tente novamente mais tarde.",
+      status: "error",
+      duration: 5000,
+      isClosable: true,
+    });
+  }
+
   async function onSubmitLogin(data: DadosLogin) {
+    setLoading(true);
     try {
-      const logou = await login(data);
-      if (logou) {
+      const response = await login(data);
+      if (response) {
         navigate("/dashboard");
-      } else {
-        toast({
-          title: "Não autorizado!",
-          description: "Email ou senha inválidos.",
-          status: "error",
-          duration: 5000,
-          isClosable: true,
-        });
       }
-    } catch (erro) {
+    } catch (error: unknown) {
+      let errorMessage = "Por favor, tente novamente mais tarde!";
+      if (error instanceof Error) {
+        errorMessage = error.message;
+      }
       toast({
-        title: "Falha no login!",
-        description:
-          "Houve um problema na tentativa de login. Tente novamente mais tarde.",
+        title: "Erro",
+        description: errorMessage,
         status: "error",
         duration: 5000,
         isClosable: true,
       });
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -199,7 +208,13 @@ export function Login() {
                   error={loginForm.formState.errors.password?.message}
                 />
               </Stack>
-              <NButton mt={16} size={"lg"} type="submit" title="Entrar" />
+              <NButton
+                mt={16}
+                size={"lg"}
+                type="submit"
+                title="Entrar"
+                isLoading={loading}
+              />
             </form>
           </Flex>
         ) : (

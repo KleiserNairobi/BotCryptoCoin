@@ -2,6 +2,7 @@ import { ReactNode, createContext, useContext, useState } from "react";
 import { ILogin } from "../models/LoginModel";
 import { autenticar } from "../services/LoginService";
 import apiBack from "../services/apiBack";
+// import axios, { AxiosError } from "axios";
 
 type User = {
   id: string;
@@ -14,7 +15,7 @@ type AppContextType = {
   setTitle: (title: string) => void;
   user: User | null;
   setUser: (user: User | null) => void;
-  login: (data: ILogin) => Promise<boolean>;
+  login: (data: ILogin) => Promise<User | null>;
   logout: () => void;
 };
 
@@ -24,7 +25,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   const [title, setTitle] = useState("Home");
   const [user, setUser] = useState<User | null>(null);
 
-  async function login(data: ILogin): Promise<boolean> {
+  async function login(data: ILogin): Promise<User | null> {
     try {
       const response = await autenticar(data);
       if (response.data) {
@@ -33,12 +34,21 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
         apiBack.defaults.headers.common[
           "Authorization"
         ] = `Bearer ${response.data.token}`;
-        return true;
+        return response.data;
       } else {
-        return false;
+        return null;
       }
-    } catch (error) {
-      return false;
+    } catch (error: unknown) {
+      // if (axios.isAxiosError(error)) {
+      //   const axiosError = error as AxiosError;
+      //   console.log("Erro de requisição Axios:", axiosError.message);
+      //   console.log("Status da resposta:", axiosError.response?.status); // Aqui você acessa o status HTTP
+      //   console.log("Dados da resposta:", axiosError.response?.data); // Aqui você acessa os dados da resposta (se houver)
+      // } else {
+      //   // Tratamento para outros tipos de erro
+      //   console.log("Erro desconhecido:", error);
+      // }
+      return null;
     }
   }
 
