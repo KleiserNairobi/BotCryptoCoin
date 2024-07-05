@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createStandaloneToast } from "@chakra-ui/react";
+import { NToast } from "../components/Feedback/NToast";
 
 const url = import.meta.env.VITE_URL_DEV;
 
@@ -9,8 +9,6 @@ const apiBack = axios.create({
 });
 
 apiBack.defaults.headers.common["Content-Type"] = "application/json";
-
-const { toast } = createStandaloneToast();
 
 // Interceptador de solicitação
 apiBack.interceptors.request.use(
@@ -33,47 +31,37 @@ apiBack.interceptors.response.use(
   },
   (error) => {
     if (!error.response) {
-      toast({
-        title: "Erro de rede",
+      NToast({
+        status: "error",
+        title: "Erro de rede.",
         description:
           "Sem resposta do servidor. Verifique sua conexão com a internet.",
-        status: "error",
-        duration: 5000,
-        isClosable: true,
       });
     } else {
       const status = error.response.status;
       if (status === 401) {
-        toast({
-          title: "Não autorizado",
-          description: "Faça login novamente.",
+        NToast({
           status: "error",
-          duration: 5000,
-          isClosable: true,
+          title: "Não autorizado.",
+          description: "Faça login novamente.",
         });
       } else if (status === 403) {
-        toast({
-          title: "Acesso negado",
-          description: "Você não tem permissão para acessar este recurso.",
+        NToast({
           status: "error",
-          duration: 5000,
-          isClosable: true,
+          title: "Acesso negado.",
+          description: "Você não tem permissão para acessar este recurso.",
         });
       } else if (status >= 500) {
-        toast({
-          title: "Erro no servidor",
-          description: "Tente novamente mais tarde.",
+        NToast({
           status: "error",
-          duration: 5000,
-          isClosable: true,
+          title: "Erro no servidor.",
+          description: "Tente novamente mais tarde.",
         });
       } else {
-        toast({
+        NToast({
+          status: "error",
           title: "Erro",
           description: error.response.data.message || "Ocorreu um erro!",
-          status: "error",
-          duration: 5000,
-          isClosable: true,
         });
       }
     }

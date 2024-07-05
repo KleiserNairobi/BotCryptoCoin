@@ -7,7 +7,6 @@ import {
   Image,
   Box,
   useColorMode,
-  useToast,
 } from "@chakra-ui/react";
 import {
   MdBrightness2,
@@ -25,6 +24,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema, registerSchema } from "../utils/Validations";
 import { useAppContext } from "../contexts/AppContext";
 import { useNavigate } from "react-router-dom";
+import { NToast } from "../components/Feedback/NToast";
 
 type DadosLogin = {
   email: string;
@@ -41,7 +41,6 @@ type DadosRegistro = {
 export function Login() {
   const tokens = useTokens();
   const navigate = useNavigate();
-  const toast = useToast();
   const { login } = useAppContext();
   const [logar, setLogar] = useState(true);
   const [loading, setLoading] = useState(false);
@@ -68,16 +67,6 @@ export function Login() {
     });
   }
 
-  function exibeErroDesconhecido() {
-    return toast({
-      title: "Erro desconhecido!",
-      description: "Ocorreu um erro inesperado. Tente novamente mais tarde.",
-      status: "error",
-      duration: 5000,
-      isClosable: true,
-    });
-  }
-
   async function onSubmitLogin(data: DadosLogin) {
     setLoading(true);
     try {
@@ -90,20 +79,28 @@ export function Login() {
       if (error instanceof Error) {
         errorMessage = error.message;
       }
-      toast({
-        title: "Erro",
-        description: errorMessage,
-        status: "error",
-        duration: 5000,
-        isClosable: true,
-      });
+      <NToast status="error" title="Erro" description={errorMessage} />;
     } finally {
       setLoading(false);
     }
   }
 
-  function onSubmitRegister(data: DadosRegistro) {
-    console.log("dados: ", data);
+  async function onSubmitRegister(data: DadosRegistro) {
+    setLoading(true);
+    try {
+      const response = await login(data);
+      if (response) {
+        navigate("/dashboard");
+      }
+    } catch (error) {
+      let errorMessage = "Por favor, tente novamente mais tarde!";
+      if (error instanceof Error) {
+        errorMessage = error.message;
+      }
+      <NToast status="error" title="Erro" description={errorMessage} />;
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
