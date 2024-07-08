@@ -40,4 +40,14 @@ export class BinanceService {
       console.log(error);
     }
   }
+
+  async getSystemStatus(): Promise<any> {
+    try {
+      const response = await this.client.systemStatus();
+      return response;
+    } catch (error) {
+      console.error('Error fetching system status:', error);
+      throw error;
+    }
+  }
 }

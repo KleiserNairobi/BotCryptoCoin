@@ -24,4 +24,9 @@ export class BinanceController {
   async getAccountStatus() {
     return await this.binanceService.getAccountStatus();
   }
+
+  @Get('system-status')
+  async getSystemStatus() {
+    return await this.binanceService.getSystemStatus();
+  }
 }
