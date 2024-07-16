@@ -1,9 +1,21 @@
-import {Controller, Get, Query} from '@nestjs/common';
+import {Controller, Get, Post, Query} from '@nestjs/common';
 import {BinanceService} from './binance.service';
 
 @Controller('binance')
 export class BinanceController {
   constructor(private readonly binanceService: BinanceService) {}
+
+  @Post('start-user-data-stream')
+  async startUserDataStream() {
+    await this.binanceService.startUserDataStream();
+    return {message: 'User data stream started'};
+  }
+
+  @Post('stop-user-data-stream')
+  async stopUserDataStream() {
+    await this.binanceService.stopUserDataStream();
+    return {message: 'User data stream stopped'};
+  }
 
   @Get('accountInfo')
   async getAccountInfo() {

@@ -1,8 +1,8 @@
 import { ReactNode, createContext, useContext, useState } from "react";
+import { jwtDecode } from "jwt-decode";
 import { ILogin } from "../models/LoginModel";
 import { autenticar } from "../services/LoginService";
 import apiBack from "../services/apiBack";
-// import axios, { AxiosError } from "axios";
 
 type User = {
   id: string;
@@ -29,12 +29,19 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     try {
       const response = await autenticar(data);
       if (response.data) {
-        setUser(response.data);
+        const token = response.data.token;
+        const decoded: { sub: string; username: string } = jwtDecode(token);
         localStorage.setItem("token", response.data.token);
         apiBack.defaults.headers.common[
           "Authorization"
         ] = `Bearer ${response.data.token}`;
-        return response.data;
+        const user: User = {
+          id: decoded.sub,
+          name: decoded.username,
+          email: decoded.username,
+        };
+        setUser(user);
+        return user;
       } else {
         return null;
       }

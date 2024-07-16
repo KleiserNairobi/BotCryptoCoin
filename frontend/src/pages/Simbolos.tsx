@@ -1,5 +1,5 @@
+import { useEffect, useState } from "react";
 import {
-  Button,
   Card,
   CardBody,
   CardHeader,
@@ -17,9 +17,26 @@ import {
 import { useTokens } from "../styles/tokens";
 import { MdOutlineSync } from "react-icons/md";
 import { NButton } from "../components/Form/NButton";
+import { getSymbols } from "../services/SymbolsService";
+import { ISymbols } from "../models/SymbolsModel";
 
 export function Simbolos() {
   const tokens = useTokens();
+  const [symbols, setSymbols] = useState<ISymbols[]>([]);
+
+  async function fetchSymbols(): Promise<void> {
+    try {
+      const result = await getSymbols();
+      setSymbols(result.data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  useEffect(() => {
+    fetchSymbols();
+  }, []);
+
   return (
     <Flex h={"100%"} w={"100%"} py={6} flexDir={"column"}>
       <Card
@@ -99,13 +116,13 @@ export function Simbolos() {
                 </Tr>
               </Thead>
               <Tbody>
-                {[...Array(50)].map((_, index) => (
+                {symbols.map((symbol, index) => (
                   <Tr key={index}>
-                    <Td>BTC-USDT</Td>
-                    <Td isNumeric>8</Td>
-                    <Td isNumeric>8</Td>
-                    <Td isNumeric>10.00000000</Td>
-                    <Td isNumeric>0.00001000</Td>
+                    <Td>{symbol.symbol}</Td>
+                    <Td isNumeric>{symbol.base_precision}</Td>
+                    <Td isNumeric>{symbol.quote_precision}</Td>
+                    <Td isNumeric>{symbol.min_notional}</Td>
+                    <Td isNumeric>{symbol.min_lot_size}</Td>
                   </Tr>
                 ))}
               </Tbody>

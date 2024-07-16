@@ -42,6 +42,6 @@ export function Router() {
     );
   }
 
-  //return rotas();
-  return user ? rotas() : logar();
+  return rotas();
+  //return user ? rotas() : logar();
 }

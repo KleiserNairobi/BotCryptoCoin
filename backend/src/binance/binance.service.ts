@@ -1,9 +1,15 @@
-import {Injectable} from '@nestjs/common';
-import {Spot, RestMarketTypes} from '@binance/connector-typescript';
+import {Injectable, OnModuleInit, OnModuleDestroy} from '@nestjs/common';
+import {
+  Spot,
+  WebsocketStream,
+  RestMarketTypes,
+} from '@binance/connector-typescript';
 
 @Injectable()
-export class BinanceService {
+export class BinanceService implements OnModuleInit, OnModuleDestroy {
   private client: Spot;
+  private wsClient: WebsocketStream | null = null;
+  private listenKey: string | null = null;
 
   constructor() {
     this.client = new Spot(
@@ -13,6 +19,49 @@ export class BinanceService {
         baseURL: 'https://testnet.binance.vision/',
       },
     );
+  }
+
+  async onModuleInit() {
+    await this.startUserDataStream();
+  }
+
+  async onModuleDestroy() {
+    await this.stopUserDataStream();
+  }
+
+  async startUserDataStream() {
+    try {
+      const response = await this.client.createListenKey();
+      this.listenKey = response.listenKey;
+
+      this.wsClient = new WebsocketStream({
+        callbacks: {
+          open: () => console.log('Connected to WebSocket server'),
+          close: () => console.log('Disconnected from WebSocket server'),
+          message: (data: string) => console.log(data),
+        },
+      });
+
+      this.wsClient.userData(this.listenKey);
+    } catch (error) {
+      console.error('Error starting user data stream:', error);
+      throw error;
+    }
+  }
+
+  async stopUserDataStream() {
+    try {
+      if (this.listenKey) {
+        await this.client.closeListenKey(this.listenKey);
+        if (this.wsClient) {
+          this.wsClient.disconnect();
+        }
+        this.listenKey = null;
+      }
+    } catch (error) {
+      console.error('Error stopping user data stream:', error);
+      throw error;
+    }
   }
 
   async getAccountInfo(): Promise<any> {

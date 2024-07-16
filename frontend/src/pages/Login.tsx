@@ -24,7 +24,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema, registerSchema } from "../utils/Validations";
 import { useAppContext } from "../contexts/AppContext";
 import { useNavigate } from "react-router-dom";
-import { NToast } from "../components/Feedback/NToast";
+import { NFToast } from "../components/Feedback/NFToast";
 
 type DadosLogin = {
   email: string;
@@ -79,7 +79,7 @@ export function Login() {
       if (error instanceof Error) {
         errorMessage = error.message;
       }
-      <NToast status="error" title="Erro" description={errorMessage} />;
+      <NFToast status="error" title="Erro" description={errorMessage} />;
     } finally {
       setLoading(false);
     }
@@ -97,7 +97,7 @@ export function Login() {
       if (error instanceof Error) {
         errorMessage = error.message;
       }
-      <NToast status="error" title="Erro" description={errorMessage} />;
+      <NFToast status="error" title="Erro" description={errorMessage} />;
     } finally {
       setLoading(false);
     }

@@ -32,6 +32,7 @@ export function Dashboard() {
         borderWidth={1}
         borderRadius={10}
         borderColor={tokens.mainBorder}
+        overflowY={"hidden"}
       >
         <CandleChart simbolo="BTCUSDT" />
       </Flex>

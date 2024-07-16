@@ -1,6 +1,4 @@
-import { createStandaloneToast } from "@chakra-ui/react";
-
-const { toast } = createStandaloneToast();
+import { useToast } from "@chakra-ui/react";
 
 type NToastProps = {
   status: "info" | "warning" | "success" | "error" | "loading";
@@ -8,12 +6,13 @@ type NToastProps = {
   description: string;
 };
 
-export const NToast = ({ status, title, description }: NToastProps) => {
-  toast({
+export function NFToast({ status, title, description }: NToastProps) {
+  const toast = useToast();
+  return toast({
     status: status,
     title: title,
     description: description,
     duration: 5000,
     isClosable: true,
   });
-};
+}
