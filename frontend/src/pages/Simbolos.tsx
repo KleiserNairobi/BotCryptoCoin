@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
 import {
+  Box,
   Card,
   CardBody,
   CardHeader,
@@ -19,23 +19,17 @@ import { MdOutlineSync } from "react-icons/md";
 import { NButton } from "../components/Form/NButton";
 import { getSymbols } from "../services/SymbolsService";
 import { ISymbols } from "../models/SymbolsModel";
+import { useQuery } from "@tanstack/react-query";
+import { NLoading } from "../components/Feedback/NLoading";
+import { NNoDataMessage } from "../components/Feedback/NNoDataMessage";
 
 export function Simbolos() {
   const tokens = useTokens();
-  const [symbols, setSymbols] = useState<ISymbols[]>([]);
 
-  async function fetchSymbols(): Promise<void> {
-    try {
-      const result = await getSymbols();
-      setSymbols(result.data);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  useEffect(() => {
-    fetchSymbols();
-  }, []);
+  const { data, error, isLoading } = useQuery<ISymbols[]>({
+    queryKey: ["symbols"],
+    queryFn: getSymbols,
+  });
 
   return (
     <Flex h={"100%"} w={"100%"} py={6} flexDir={"column"}>
@@ -116,7 +110,8 @@ export function Simbolos() {
                 </Tr>
               </Thead>
               <Tbody>
-                {symbols.map((symbol, index) => (
+                {isLoading && <NLoading title="Carregando..." />}
+                {data?.map((symbol, index) => (
                   <Tr key={index}>
                     <Td>{symbol.symbol}</Td>
                     <Td isNumeric>{symbol.base_precision}</Td>
@@ -125,6 +120,7 @@ export function Simbolos() {
                     <Td isNumeric>{symbol.min_lot_size}</Td>
                   </Tr>
                 ))}
+                {error && <NNoDataMessage message="Nada a apresentar..." />}
               </Tbody>
             </Table>
           </TableContainer>

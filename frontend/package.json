@@ -14,6 +14,7 @@
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
     "@hookform/resolvers": "^3.6.0",
+    "@tanstack/react-query": "^5.51.11",
     "apexcharts": "^3.49.0",
     "axios": "^1.7.2",
     "framer-motion": "^11.2.10",
@@ -27,6 +28,7 @@
     "yup": "^1.4.0"
   },
   "devDependencies": {
+    "@tanstack/eslint-plugin-query": "^5.51.12",
     "@types/jwt-decode": "^3.1.0",
     "@types/node": "^20.14.2",
     "@types/react": "^18.3.3",
